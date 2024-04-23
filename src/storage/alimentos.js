@@ -2,12 +2,12 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
-function setalimentos(alimentos) {
+function setAlimentos(alimentos) {
   return localforage.setItem("alimentos", alimentos);
 }
 
 export async function getAlimentos(query) {
-  await fakeNetwork(`getalimentos:${query}`);
+  await fakeNetwork(`getAlimentos:${query}`);
   let alimentos = await localforage.getItem("alimentos");
   if (!alimentos) alimentos = [];
   if (query) {
@@ -29,7 +29,7 @@ export async function createAlimento() {
   let alimento = { id, createdAt: Date.now() };
   let alimentos = await getAlimentos();
   alimentos.unshift(alimento);
-  await setalimentos(alimentos);
+  await setAlimentos(alimentos);
   return alimento;
 }
 
@@ -39,7 +39,7 @@ export async function updateAlimento(id, updates) {
   let alimento = alimentos.find((alimento) => alimento.id === id);
   if (!alimento) throw new Error("No alimento found for", id);
   Object.assign(alimento, updates);
-  await setalimentos(alimentos);
+  await setAlimentos(alimentos);
   return alimento;
 }
 
@@ -48,7 +48,7 @@ export async function deleteAlimento(id) {
   let index = alimentos.findIndex((user) => user.id === id);
   if (index > -1) {
     alimentos.splice(index, 1);
-    await setalimentos(alimentos);
+    await setAlimentos(alimentos);
     return true;
   }
   return false;
