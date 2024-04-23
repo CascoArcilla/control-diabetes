@@ -33,17 +33,17 @@ export async function createAlimento() {
   return alimento;
 }
 
-export async function updateUser(id, updates) {
+export async function updateAlimento(id, updates) {
   await fakeNetwork();
   let alimentos = await localforage.getItem("alimentos");
-  let user = alimentos.find((user) => user.id === id);
-  if (!user) throw new Error("No user found for", id);
-  Object.assign(user, updates);
+  let alimento = alimentos.find((alimento) => alimento.id === id);
+  if (!alimento) throw new Error("No alimento found for", id);
+  Object.assign(alimento, updates);
   await setalimentos(alimentos);
-  return user;
+  return alimento;
 }
 
-export async function deleteUser(id) {
+export async function deleteAlimento(id) {
   let alimentos = await localforage.getItem("alimentos");
   let index = alimentos.findIndex((user) => user.id === id);
   if (index > -1) {
