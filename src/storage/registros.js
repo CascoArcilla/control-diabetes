@@ -16,14 +16,14 @@ export async function getRegistros(query) {
   return registros.sort(sortBy("last", "createdAt"));
 }
 
-export async function getAlimento(id) {
+export async function getRegistro(id) {
   await fakeNetwork(`Alimento:${id}`);
   let registros = await localforage.getItem("registros");
   let registro = registros.find((registro) => registro.id === id);
   return registro ?? null;
 }
 
-export async function createAlimento() {
+export async function createRegistro() {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
   let registro = { id, createdAt: Date.now() };
@@ -33,7 +33,7 @@ export async function createAlimento() {
   return registro;
 }
 
-export async function updateAlimento(id, updates) {
+export async function updateRegistro(id, updates) {
   await fakeNetwork();
   let registros = await localforage.getItem("registros");
   let registro = registros.find((registro) => registro.id === id);
@@ -43,7 +43,7 @@ export async function updateAlimento(id, updates) {
   return registro;
 }
 
-export async function deleteAlimento(id) {
+export async function deleteRegistro(id) {
   let registros = await localforage.getItem("registros");
   let index = registros.findIndex((user) => user.id === id);
   if (index > -1) {
