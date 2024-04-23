@@ -17,7 +17,7 @@ export async function getAlimentos(query) {
 }
 
 export async function getAlimento(id) {
-  await fakeNetwork(`Alimento:${id}`);
+  await fakeNetwork(`alimento:${id}`);
   let alimentos = await localforage.getItem("alimentos");
   let alimento = alimentos.find((alimento) => alimento.id === id);
   return alimento ?? null;

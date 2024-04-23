@@ -17,7 +17,7 @@ export async function getRegistros(query) {
 }
 
 export async function getRegistro(id) {
-  await fakeNetwork(`Alimento:${id}`);
+  await fakeNetwork(`registro:${id}`);
   let registros = await localforage.getItem("registros");
   let registro = registros.find((registro) => registro.id === id);
   return registro ?? null;
