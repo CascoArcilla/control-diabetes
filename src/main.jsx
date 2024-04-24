@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
+import "./css/styles.css";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -10,10 +11,8 @@ import Root, {
   action as rootAction,
 } from "./routes/root.jsx";
 import Contact, { loader as contactLoader } from "./routes/contact.jsx";
-
 import ErrorPage from "./error-page.jsx";
 import EditContact, { action as editAction } from "./routes/edit.jsx";
-import Home from "./layaults/Home/Home.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,10 +34,6 @@ const router = createBrowserRouter([
         action: editAction,
       },
     ],
-  },
-  {
-    path: "/home",
-    element: <Home />,
   },
 ]);
 

@@ -16,7 +16,9 @@ export default function Root() {
   return (
     <>
       <Header />
-      <div className="container-sm"></div>
+      <div className="container-sm">
+        <Outlet />
+      </div>
     </>
   );
 }
