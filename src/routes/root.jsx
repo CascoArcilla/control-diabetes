@@ -1,6 +1,7 @@
 import { Link, Outlet, useLoaderData, Form } from "react-router-dom";
 import { getContacts, createContact } from "../storage/contacts";
 import Header from "../components/header/Hedaer";
+import Nav from "../components/navigation/Nav";
 
 export async function action() {
   const contact = await createContact();
@@ -19,6 +20,7 @@ export default function Root() {
       <div className="container-sm">
         <Outlet />
       </div>
+      <Nav />
     </>
   );
 }
