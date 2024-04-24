@@ -1,12 +1,15 @@
-import { useParams } from "react-router-dom";
-
 export default function Home() {
-  const { iduser } = useParams();
-
   return (
     <>
-      <h1>Welcome</h1>
-      {iduser ? <p>{iduser}</p> : ""}
+      <h1 className="text-center">Welcome to DiabeTics</h1>
+      <figure className="text-center">
+        <blockquote className="blockquote">
+          <p>Una app web para llevar un control de la dibates</p>
+        </blockquote>
+        <figcaption className="blockquote-footer">
+          Hecho por <cite title="Source Title">Alumnos</cite>
+        </figcaption>
+      </figure>
     </>
   );
 }
