@@ -23,10 +23,10 @@ export async function getRegistro(id) {
   return registro ?? null;
 }
 
-export async function createRegistro() {
+export async function createRegistro(dataRegistro) {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
-  let registro = { id, createdAt: Date.now() };
+  let registro = { id, createdAt: Date.now(), ...dataRegistro };
   let registros = await getRegistros();
   registros.unshift(registro);
   await setRegistros(registros);
