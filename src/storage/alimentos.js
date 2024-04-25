@@ -23,10 +23,10 @@ export async function getAlimento(id) {
   return alimento ?? null;
 }
 
-export async function createAlimento() {
+export async function createAlimento(dataAlimento) {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
-  let alimento = { id, createdAt: Date.now() };
+  let alimento = { id, createdAt: Date.now(), ...dataAlimento };
   let alimentos = await getAlimentos();
   alimentos.unshift(alimento);
   await setAlimentos(alimentos);
