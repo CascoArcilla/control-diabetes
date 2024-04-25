@@ -23,6 +23,13 @@ export async function getUser(id) {
   return user ?? null;
 }
 
+export async function getUserByUserName(userName) {
+  const users = await getUsers();
+  if (!users) return false;
+  const user = users.find((user) => user.username == userName);
+  return user ?? null;
+}
+
 export async function createUser(dataUser) {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
