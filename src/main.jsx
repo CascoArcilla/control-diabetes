@@ -8,9 +8,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import ErrorPage from "./error-page.jsx";
 import Login from "./components/login/Login.jsx";
-import MenuForm from "./components/forms/MenuForm.jsx";
-import Perfil from "./components/perfil/Perfil.jsx";
 import ProtectedRoot from "./routes/protectedRoot.jsx";
+import RegistroRoot from "./routes/registro.jsx";
+import PerfilRoot from "./routes/perfil.jsx";
 
 import { AuthProvider } from "./auth/AuthPorvider.jsx";
 
@@ -30,11 +30,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "registro",
-        element: <MenuForm />,
+        element: <RegistroRoot />,
       },
       {
         path: "perfil",
-        element: <Perfil />,
+        element: <PerfilRoot />,
       },
     ],
   },

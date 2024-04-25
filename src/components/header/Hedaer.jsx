@@ -8,7 +8,7 @@ export default function Header({ position, changePosition }) {
       <div>
         <div className="container-fluid d-flex justify-content-between p-1 ">
           <h2 className="fw-bolder">DiabeTics</h2>
-          {!auth.isAuthenticated ? (
+          {!auth.isAuthenticated && (
             <div className="d-flex gap-1 ">
               <button
                 className="btn btn-primary "
@@ -25,8 +25,6 @@ export default function Header({ position, changePosition }) {
                 Sign Up
               </button>
             </div>
-          ) : (
-            ""
           )}
         </div>
       </div>

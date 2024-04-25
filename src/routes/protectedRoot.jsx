@@ -9,9 +9,12 @@ import SignUp from "../components/signup/SignUp";
 
 export default function ProtectedRoot() {
   const auth = useAuth();
+  const path = window.location.pathname;
+  console.log(path);
 
   return auth.isAuthenticated ? (
     <>
+      <Header />
       <div className="container-sm">
         <Outlet />
       </div>
