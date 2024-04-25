@@ -13,6 +13,9 @@ import Root, {
 import Contact, { loader as contactLoader } from "./routes/contact.jsx";
 import ErrorPage from "./error-page.jsx";
 import EditContact, { action as editAction } from "./routes/edit.jsx";
+import Home from "./layaults/home/Home.jsx";
+import Perfil from "./layaults/perfil/Perfil.jsx";
+import MenuForm from "./layaults/forms/MenuForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,14 @@ const router = createBrowserRouter([
         element: <EditContact />,
         loader: contactLoader,
         action: editAction,
+      },
+      {
+        path: "/perfil",
+        element: <Perfil />,
+      },
+      {
+        path: "/registro",
+        element: <MenuForm />,
       },
     ],
   },

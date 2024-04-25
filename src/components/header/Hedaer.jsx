@@ -3,7 +3,7 @@ export default function Header() {
     <header className="container-lg border bg-body pt-1 p-0 ">
       <div>
         <div className="container-fluid d-flex justify-content-between">
-          <h1 className="fw-bolder">DiabeTics</h1>
+          <h2 className="fw-bolder">DiabeTics</h2>
         </div>
       </div>
     </header>
