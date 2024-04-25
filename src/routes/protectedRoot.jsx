@@ -46,8 +46,10 @@ function DefaultInterface({ children }) {
     <>
       <Navigate to="/" />
       <Header position={position} changePosition={changePosition} />
-      {position == "login" && <Login />}
-      {position == "signup" && <SignUp />}
+      <div className="container-sm bg-body d-flex flex-column align-items-center justify-content-center ">
+        {position == "login" && <Login />}
+        {position == "signup" && <SignUp />}
+      </div>
     </>
   );
 }

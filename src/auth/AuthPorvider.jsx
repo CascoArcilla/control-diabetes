@@ -33,13 +33,20 @@ export async function borrarToken(idToken) {
 const AuthContext = createContext({
   isAuthenticated: false,
   token: "",
+  user: {},
 });
 
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState({
+    name: "Undefined",
+    lastname: "Undefined",
+    username: "Undifined",
+    id: "error_id",
+  });
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated }}>
+    <AuthContext.Provider value={{ isAuthenticated, user }}>
       {children}
     </AuthContext.Provider>
   );
