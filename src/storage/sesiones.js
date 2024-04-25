@@ -1,6 +1,7 @@
 import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
+import { getUserByUserName } from "./users";
 
 function setTokens(tokens) {
   return localforage.setItem("tokens", tokens);
@@ -31,6 +32,24 @@ export async function createToken(dataToken) {
   tokens.unshift(token);
   await setTokens(tokens);
   return token;
+}
+
+export async function creatUserToken(userName) {
+  const user = await getUserByUserName(userName);
+  const chainTokenPart1 = Math.random().toString(36).substring(2, 9);
+  const chainTokenPart2 = Math.random().toString(36).substring(2, 9);
+
+  const token = {
+    token: `${chainTokenPart1}${user.id}${chainTokenPart2}${user.username}`,
+    userid: user.id,
+  };
+
+  const newToken = await createToken(token);
+  if (!newToken) {
+    return false;
+  }
+
+  return token.token;
 }
 
 export async function updateToken(id, updates) {

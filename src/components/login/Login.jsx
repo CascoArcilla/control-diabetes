@@ -1,33 +1,34 @@
 import { Form, useActionData } from "react-router-dom";
 import { getUserByUserName } from "../../storage/users";
+import { useAuth } from "../../auth/AuthPorvider";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
   const user = await getUserByUserName(updates.username);
 
-  if (!user) return { message: "Usurio no encontrado" };
+  if (!user) return { message: "Usurio no encontrado", state: false };
   const passwordOk = user.password == updates.password;
-  if (!passwordOk) return { message: "Contrasña incorrecta" };
+  if (!passwordOk) return { message: "Contrasña incorrecta", state: false };
   const { password, ...newUser } = user;
 
   console.log("Credenciales correctas");
   console.log(newUser);
 
-  return { state: true };
+  return { state: true, user: newUser };
 }
 
 export default function Login() {
-  const error = useActionData();
+  const action = useActionData();
 
   return (
     <Form
       method="post"
       className="bg-body-secondary p-3 d-flex flex-column gap-4  align-items-center justify-content-center "
     >
-      {error ? (
+      {action ? (
         <div className="p-2 border  border-danger ">
-          <p className="p-0 m-0 fw-bolder text-danger">{error.message}</p>
+          <p className="p-0 m-0 fw-bolder text-danger">{action.message}</p>
         </div>
       ) : (
         ""
