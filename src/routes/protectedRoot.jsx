@@ -1,21 +1,31 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/header/Hedaer";
 import Nav from "../components/navigation/Nav";
 import { useAuth } from "../auth/AuthPorvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Login from "../components/login/Login";
 import SignUp from "../components/signup/SignUp";
+import Home from "../components/home/Home";
 
 export default function ProtectedRoot() {
   const auth = useAuth();
-  const path = window.location.pathname;
-  console.log(path);
+  const [home, setHome] = useState(<Home />);
+
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname == "/") {
+      setHome(<Home />);
+    } else {
+      setHome("");
+    }
+  }, [location.pathname]);
 
   return auth.isAuthenticated ? (
     <>
       <Header />
       <div className="container-sm">
+        {home}
         <Outlet />
       </div>
       <Nav />
