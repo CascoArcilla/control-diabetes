@@ -1,6 +1,7 @@
 import { Form, useActionData } from "react-router-dom";
 import { getUserByUserName } from "../../storage/users";
 import { useAuth } from "../../auth/AuthPorvider";
+import { useEffect } from "react";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
@@ -13,13 +14,25 @@ export async function action({ request, params }) {
   const { password, ...newUser } = user;
 
   console.log("Credenciales correctas");
-  console.log(newUser);
 
   return { state: true, user: newUser };
 }
 
 export default function Login() {
   const action = useActionData();
+  const { changeUser, changeAuthenticat } = useAuth();
+
+  useEffect(() => {
+    if (action) {
+      if (action.state) {
+        let newUser = action ? action.user : false;
+        if (newUser) {
+          changeUser(newUser);
+          changeAuthenticat();
+        }
+      }
+    }
+  }, [action]);
 
   return (
     <Form

@@ -1,39 +1,27 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-const AuthContext = createContext({
-  isAuthenticated: false,
-  token: "",
-  user: {},
-});
+const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({
-    name: "Undefined",
-    lastname: "Undefined",
-    username: "Undifined",
-    id: "error_id",
-  });
+  const [user, setUser] = useState({});
+  const [update, setUpdate] = useState(false);
 
-  const handleAuthenticat = (value) => {
-    let newAuth = !value == null && value;
-    if (newAuth) {
-      return { message: "Error al cambiar autenticacion" };
-    }
-    setIsAuthenticated(newAuth);
+  const changeAuthenticat = () => {
+    setIsAuthenticated(!isAuthenticated);
   };
 
-  const handleUser = (value) => {
-    let newUser = !value == null && value;
-    if (newUser) {
-      return { message: "Error al cambiar valores de usuario" };
-    }
+  const changeUser = (newUser) => {
     setUser(newUser);
   };
 
+  useEffect(() => {
+    setUpdate(false);
+  }, [update, user]);
+
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, user, handleAuthenticat, handleUser }}
+      value={{ isAuthenticated, user, changeAuthenticat, changeUser }}
     >
       {children}
     </AuthContext.Provider>
