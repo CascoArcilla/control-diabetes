@@ -23,10 +23,10 @@ export async function getToken(id) {
   return token ?? null;
 }
 
-export async function createToken(datatoken) {
+export async function createToken(dataToken) {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
-  let token = { id, createdAt: Date.now(), ...datatoken };
+  let token = { id, createdAt: Date.now(), ...dataToken };
   let tokens = await getTokens();
   tokens.unshift(token);
   await setTokens(tokens);
