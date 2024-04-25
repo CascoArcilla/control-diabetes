@@ -1,13 +1,13 @@
 import { useAuth } from "../../auth/AuthPorvider";
 
 export default function Header({ position, changePosition }) {
-  const auth = useAuth();
+  const { isAuthenticated, changeAuthenticat } = useAuth();
 
   return (
     <header className="container-sm  border bg-body pt-1 p-0 ">
       <div className="container-fluid d-flex justify-content-between p-1 ">
         <h2 className="fw-bolder">DiabeTics</h2>
-        {!auth.isAuthenticated && (
+        {!isAuthenticated ? (
           <div className="d-flex gap-1 ">
             <button
               className="btn btn-primary "
@@ -22,6 +22,12 @@ export default function Header({ position, changePosition }) {
               onClick={changePosition}
             >
               Sign Up
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button className="btn btn-secondary " onClick={changeAuthenticat}>
+              Cerrar Sesión
             </button>
           </div>
         )}
