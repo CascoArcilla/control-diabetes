@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Header from "../components/header/Hedaer";
 import Nav from "../components/navigation/Nav";
 import { useAuth } from "../auth/AuthPorvider";
@@ -44,6 +44,7 @@ function DefaultInterface({ children }) {
 
   return (
     <>
+      <Navigate to="/" />
       <Header position={position} changePosition={changePosition} />
       {position == "login" && <Login />}
       {position == "signup" && <SignUp />}
