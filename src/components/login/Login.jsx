@@ -1,21 +1,36 @@
 import { Form, useActionData } from "react-router-dom";
-import { getUserByUserName } from "../../storage/users";
+import { getUserByUserName, getUsers, createUser } from "../../storage/users";
 import { useAuth } from "../../auth/AuthPorvider";
 import { useEffect } from "react";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  const user = await getUserByUserName(updates.username);
 
-  if (!user) return { message: "Usurio no encontrado", state: false };
-  const passwordOk = user.password == updates.password;
-  if (!passwordOk) return { message: "Contrasña incorrecta", state: false };
-  const { password, ...newUser } = user;
+  if (updates.nombre) {
+    let users = await getUsers();
+    let userEqual = users.find((user) => user.username == updates.username);
+    if (userEqual)
+      return { message: "Ya existe un usuario con ese Username", state: false };
 
-  console.log("Credenciales correctas");
+    let passwordsEqueal = updates.password == updates.verifyPassword;
+    if (!passwordsEqueal)
+      return { message: "Contraseñas no coinciden", state: false };
 
-  return { state: true, user: newUser };
+    const { verifyPassword, ...newDataUser } = updates;
+
+    let user = await createUser(newDataUser);
+
+    return { message: "Ok", state: true };
+  } else {
+    const user = await getUserByUserName(updates.username);
+
+    if (!user) return { message: "Usurio no encontrado", state: false };
+    const passwordOk = user.password == updates.password;
+    if (!passwordOk) return { message: "Contrasña incorrecta", state: false };
+    const { password, ...newUser } = user;
+    return { state: true, user: newUser };
+  }
 }
 
 export default function Login() {

@@ -50,7 +50,7 @@ function DefaultInterface({ children }) {
       <Navigate to="/" />
       <Header position={position} changePosition={changePosition} />
       <div
-        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center justify-content-center "
+        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center pt-4 "
         style={{ minHeight: "100vh" }}
       >
         {position == "login" && <Login />}
