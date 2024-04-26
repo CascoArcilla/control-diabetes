@@ -3,4 +3,17 @@ body {
     margin: 0;
     overflow: hidden;
     min-height: 100vh;
+    min-width: 100vw;
+}
+
+.container-max-600 {
+    max-width: 600px;
+}
+
+.container-max-400 {
+    max-width: 400px;
+}
+
+#root {
+    padding: 0;
 }

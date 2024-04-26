@@ -24,7 +24,10 @@ export default function ProtectedRoot() {
   return auth.isAuthenticated ? (
     <>
       <Header />
-      <div className="container-sm">
+      <div
+        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center "
+        style={{ minHeight: "100vh" }}
+      >
         {home}
         <Outlet />
       </div>
@@ -46,7 +49,10 @@ function DefaultInterface({ children }) {
     <>
       <Navigate to="/" />
       <Header position={position} changePosition={changePosition} />
-      <div className="container-sm bg-body d-flex flex-column align-items-center justify-content-center ">
+      <div
+        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center justify-content-center "
+        style={{ minHeight: "100vh" }}
+      >
         {position == "login" && <Login />}
         {position == "signup" && <SignUp />}
       </div>

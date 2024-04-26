@@ -37,8 +37,9 @@ export default function Login() {
   return (
     <Form
       method="post"
-      className="bg-body-secondary p-3 d-flex flex-column gap-4  align-items-center justify-content-center "
+      className="bg-body-secondary rounded  p-3 container-sm container-max-400 d-flex flex-column gap-4  align-items-center justify-content-center "
     >
+      <h1 className="fw-bolder ">Login</h1>
       {action ? (
         <div className="p-2 border  border-danger ">
           <p className="p-0 m-0 fw-bolder text-danger">{action.message}</p>
@@ -46,8 +47,8 @@ export default function Login() {
       ) : (
         ""
       )}
-      <div className="">
-        <label htmlFor="inputEmail4" className="form-label">
+      <div className="container-fluid ">
+        <label htmlFor="inputEmail4" className="form-label fw-bold ">
           Username:
         </label>
         <input
@@ -57,8 +58,8 @@ export default function Login() {
           name="username"
         />
       </div>
-      <div className="">
-        <label htmlFor="inputPassword4" className="form-label">
+      <div className="container-fluid ">
+        <label htmlFor="inputPassword4" className="form-label fw-bold ">
           Contraseña:
         </label>
         <input
@@ -68,8 +69,8 @@ export default function Login() {
           name="password"
         />
       </div>
-      <div className="w-100 ">
-        <button type="submit" className="btn btn-primary w-100 ">
+      <div className="container-fluid ">
+        <button type="submit" className="btn btn-primary w-100 fw-bold ">
           Ingresar
         </button>
       </div>
