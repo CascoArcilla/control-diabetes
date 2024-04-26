@@ -1,21 +1,36 @@
 import { Form, useActionData } from "react-router-dom";
-import { getUserByUserName } from "../../storage/users";
+import { getUserByUserName, getUsers, createUser } from "../../storage/users";
 import { useAuth } from "../../auth/AuthPorvider";
 import { useEffect } from "react";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  const user = await getUserByUserName(updates.username);
 
-  if (!user) return { message: "Usurio no encontrado", state: false };
-  const passwordOk = user.password == updates.password;
-  if (!passwordOk) return { message: "Contrasña incorrecta", state: false };
-  const { password, ...newUser } = user;
+  if (updates.nombre) {
+    let users = await getUsers();
+    let userEqual = users.find((user) => user.username == updates.username);
+    if (userEqual)
+      return { message: "Ya existe un usuario con ese Username", state: false };
 
-  console.log("Credenciales correctas");
+    let passwordsEqueal = updates.password == updates.verifyPassword;
+    if (!passwordsEqueal)
+      return { message: "Contraseñas no coinciden", state: false };
 
-  return { state: true, user: newUser };
+    const { verifyPassword, ...newDataUser } = updates;
+
+    let user = await createUser(newDataUser);
+
+    return { message: "Ok", state: true };
+  } else {
+    const user = await getUserByUserName(updates.username);
+
+    if (!user) return { message: "Usurio no encontrado", state: false };
+    const passwordOk = user.password == updates.password;
+    if (!passwordOk) return { message: "Contrasña incorrecta", state: false };
+    const { password, ...newUser } = user;
+    return { state: true, user: newUser };
+  }
 }
 
 export default function Login() {
@@ -37,8 +52,9 @@ export default function Login() {
   return (
     <Form
       method="post"
-      className="bg-body-secondary p-3 d-flex flex-column gap-4  align-items-center justify-content-center "
+      className="bg-body-secondary rounded  p-3 container-sm container-max-400 d-flex flex-column gap-4  align-items-center justify-content-center "
     >
+      <h1 className="fw-bolder ">Login</h1>
       {action ? (
         <div className="p-2 border  border-danger ">
           <p className="p-0 m-0 fw-bolder text-danger">{action.message}</p>
@@ -46,8 +62,8 @@ export default function Login() {
       ) : (
         ""
       )}
-      <div className="">
-        <label htmlFor="inputEmail4" className="form-label">
+      <div className="container-fluid ">
+        <label htmlFor="inputEmail4" className="form-label fw-bold ">
           Username:
         </label>
         <input
@@ -57,8 +73,8 @@ export default function Login() {
           name="username"
         />
       </div>
-      <div className="">
-        <label htmlFor="inputPassword4" className="form-label">
+      <div className="container-fluid ">
+        <label htmlFor="inputPassword4" className="form-label fw-bold ">
           Contraseña:
         </label>
         <input
@@ -68,8 +84,8 @@ export default function Login() {
           name="password"
         />
       </div>
-      <div className="w-100 ">
-        <button type="submit" className="btn btn-primary w-100 ">
+      <div className="container-fluid ">
+        <button type="submit" className="btn btn-primary w-100 fw-bold ">
           Ingresar
         </button>
       </div>

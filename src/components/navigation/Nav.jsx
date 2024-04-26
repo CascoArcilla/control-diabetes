@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
-    <nav className="fixed-bottom bg-body container-lg p-0 ">
+    <nav
+      className="fixed-bottom container-max-600 bg-body container-lg p-0 "
+      style={{ maxHeight: "70px" }}
+    >
       <ul
         className="border d-flex flex-row justify-content-around fs-1 "
         style={{ margin: "0", padding: "0", minHeight: "3.5rem" }}
