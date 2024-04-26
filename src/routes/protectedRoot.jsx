@@ -25,8 +25,8 @@ export default function ProtectedRoot() {
     <>
       <Header />
       <div
-        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center "
-        style={{ minHeight: "100vh" }}
+        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center flex-grow-1 "
+        style={{ marginBottom: "50px" }}
       >
         {home}
         <Outlet />
@@ -49,10 +49,7 @@ function DefaultInterface({ children }) {
     <>
       <Navigate to="/" />
       <Header position={position} changePosition={changePosition} />
-      <div
-        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center pt-4 "
-        style={{ minHeight: "100vh" }}
-      >
+      <div className="container-sm container-max-600 bg-body d-flex flex-column align-items-center flex-grow-1  pt-4 ">
         {position == "login" && <Login />}
         {position == "signup" && <SignUp />}
       </div>
