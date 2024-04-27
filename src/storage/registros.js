@@ -1,9 +1,22 @@
 import localforage from "localforage";
 import { matchSorter } from "match-sorter";
+import { result } from "../mocks/datos-glucosa.json";
 import sortBy from "sort-by";
 
 function setRegistros(registros) {
   return localforage.setItem("registros", registros);
+}
+
+export function getRegistrosM() {
+  const newResults = result.sort(sortBy("last", "fecha"));
+  const sendResults = newResults.map((registro) => {
+    return {
+      ...registro,
+      fecha: registro.fecha.slice(0, 10),
+    };
+  });
+
+  return sendResults;
 }
 
 export async function getRegistros(query) {
