@@ -67,7 +67,13 @@ export default function FormGlucosa() {
           maxLength="100"
         />
       </div>
-      <input type="text" value={user.id} name="iduser" className="d-none " />
+      <input
+        type="text"
+        value={user.id}
+        name="iduser"
+        className="d-none"
+        readOnly
+      />
       <div className="container-fluid p-0 mt-2 ">
         <button type="submit" className="btn btn-primary w-100 ">
           Registrar
