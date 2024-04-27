@@ -1,7 +1,6 @@
 import { Form, Navigate, useActionData } from "react-router-dom";
 import { useAuth } from "../../auth/AuthPorvider";
 import { createRegistro } from "../../storage/registros";
-import { useEffect } from "react";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
@@ -19,13 +18,11 @@ export default function FormGlucosa() {
   const action = useActionData();
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (action) {
-      if (action.message == "Ok" && action.state) {
-        return <Navigate to="/" />;
-      }
+  if (action) {
+    if (action.message == "Ok" && action.state) {
+      return <Navigate to="/" />;
     }
-  }, [action]);
+  }
 
   return (
     <Form

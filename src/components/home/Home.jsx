@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <h1 className="text-center">
-        Bienvenido <span className="text-capitalize  ">{user.name}</span>
+        Bienvenido <span className="text-capitalize  ">{user.nombre}</span>
       </h1>
       <figure className="text-center">
         <blockquote className="blockquote">
