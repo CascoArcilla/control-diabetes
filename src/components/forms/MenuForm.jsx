@@ -8,6 +8,9 @@ export default function MenuForm() {
         <li>
           <Link to="/registro/glucosa">Glucosa</Link>
         </li>
+        <li>
+          <Link to="/registro/alimento">Alimento</Link>
+        </li>
       </ul>
     </>
   );
