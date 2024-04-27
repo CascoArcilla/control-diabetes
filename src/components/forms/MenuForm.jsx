@@ -1,3 +1,14 @@
+import { Link } from "react-router-dom";
+
 export default function MenuForm() {
-  return <h1>Selecciona lo que deseas registrar</h1>;
+  return (
+    <>
+      <h2>¿Que deseas registrar?</h2>
+      <ul>
+        <li>
+          <Link to="/registro/glucosa">Glucosa</Link>
+        </li>
+      </ul>
+    </>
+  );
 }

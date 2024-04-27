@@ -13,6 +13,7 @@ import RegistroRoot from "./routes/registro.jsx";
 import PerfilRoot from "./routes/perfil.jsx";
 
 import { AuthProvider } from "./auth/AuthPorvider.jsx";
+import FormGlucosa from "./components/forms/FormGlucosa.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "registro",
         element: <RegistroRoot />,
+      },
+      {
+        path: "registro/glucosa",
+        element: <FormGlucosa />,
       },
       {
         path: "perfil",
