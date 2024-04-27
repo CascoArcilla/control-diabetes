@@ -1,49 +1,55 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
+import "./css/styles.css";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Root, {
-  loader as rootLoader,
-  action as rootAction,
-} from "./routes/root.jsx";
-import Contact, { loader as contactLoader } from "./routes/contact.jsx";
-
 import ErrorPage from "./error-page.jsx";
-import EditContact, { action as editAction } from "./routes/edit.jsx";
-import Home from "./layaults/Home/Home.jsx";
+import { action as loginAction } from "./components/login/Login.jsx";
+import ProtectedRoot from "./routes/protectedRoot.jsx";
+import RegistroRoot from "./routes/registro.jsx";
+import PerfilRoot from "./routes/perfil.jsx";
+
+import { AuthProvider } from "./auth/AuthPorvider.jsx";
+import FormGlucosa, {
+  action as glucosaAction,
+} from "./components/forms/FormGlucosa.jsx";
+import FormAlimento from "./components/forms/FormAlimento.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <ProtectedRoot />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
+    action: loginAction,
     children: [
       {
-        path: "contacts/:contacid",
-        element: <Contact />,
-        loader: contactLoader,
+        path: "registro",
+        element: <RegistroRoot />,
       },
       {
-        path: "contacts/:contactId/edit",
-        element: <EditContact />,
-        loader: contactLoader,
-        action: editAction,
+        path: "registro/glucosa",
+        element: <FormGlucosa />,
+        action: glucosaAction,
+      },
+      {
+        path: "registro/alimento",
+        element: <FormAlimento />,
+      },
+      {
+        path: "perfil",
+        element: <PerfilRoot />,
       },
     ],
-  },
-  {
-    path: "/home",
-    element: <Home />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
