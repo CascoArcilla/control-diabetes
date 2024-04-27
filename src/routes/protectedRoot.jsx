@@ -25,7 +25,7 @@ export default function ProtectedRoot() {
     <>
       <Header />
       <div
-        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center flex-grow-1 "
+        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center flex-grow-1 pt-2 "
         style={{ marginBottom: "50px" }}
       >
         {home}
