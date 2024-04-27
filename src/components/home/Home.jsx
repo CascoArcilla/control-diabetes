@@ -1,9 +1,14 @@
+import { useAuth } from "../../auth/AuthPorvider";
 import HistorialGlucosa from "../graficos/HistorialGlucosa";
 
 export default function Home() {
+  const { user } = useAuth();
+
   return (
     <>
-      <h1 className="text-center">Welcome to DiabeTics</h1>
+      <h1 className="text-center">
+        Bienvenido <span className="text-capitalize  ">{user.name}</span>
+      </h1>
       <figure className="text-center">
         <blockquote className="blockquote">
           <p>Una app web para llevar un control de la dibates</p>
