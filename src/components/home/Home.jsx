@@ -1,3 +1,5 @@
+import HistorialGlucosa from "../graficos/HistorialGlucosa";
+
 export default function Home() {
   return (
     <>
@@ -10,6 +12,7 @@ export default function Home() {
           Hecho por <cite title="Source Title">Alumnos</cite>
         </figcaption>
       </figure>
+      <HistorialGlucosa />
     </>
   );
 }
