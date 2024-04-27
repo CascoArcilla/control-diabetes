@@ -16,6 +16,7 @@ import { AuthProvider } from "./auth/AuthPorvider.jsx";
 import FormGlucosa, {
   action as glucosaAction,
 } from "./components/forms/FormGlucosa.jsx";
+import FormAlimento from "./components/forms/FormAlimento.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         path: "registro/glucosa",
         element: <FormGlucosa />,
         action: glucosaAction,
+      },
+      {
+        path: "registro/alimento",
+        element: <FormAlimento />,
       },
       {
         path: "perfil",
