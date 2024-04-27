@@ -16,6 +16,17 @@ body {
     max-width: 400px;
 }
 
+.boton-menu-form {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 4px;
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+}
+
 #root {
     padding: 0;
     min-height: max-content;

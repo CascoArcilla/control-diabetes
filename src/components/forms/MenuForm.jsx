@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 
 export default function MenuForm() {
   return (
-    <>
-      <h2>¿Que deseas registrar?</h2>
-      <ul>
-        <li>
-          <Link to="/registro/glucosa">Glucosa</Link>
-        </li>
-        <li>
-          <Link to="/registro/alimento">Alimento</Link>
-        </li>
-      </ul>
-    </>
+    <div className="container-sm flex-grow-1 d-flex flex-column ">
+      <h1 className="text-center">¿Que deseas registrar?</h1>
+      <div className="d-flex flex-column gap-2 flex-grow-1 text-center text-black mt-4 ">
+        <Link to="/registro/glucosa" className="boton-menu-form ">
+          Glucosa
+        </Link>
+        <Link to="/registro/alimento" className="boton-menu-form ">
+          Alimento
+        </Link>
+      </div>
+    </div>
   );
 }
