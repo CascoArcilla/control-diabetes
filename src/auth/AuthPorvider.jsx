@@ -5,6 +5,7 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
+  const [registerGlucosaToday, setRegisterGlucosaToday] = useState(false);
   const [update, setUpdate] = useState(false);
 
   const changeAuthenticat = () => {
@@ -15,13 +16,24 @@ export function AuthProvider({ children }) {
     setUser(newUser);
   };
 
+  const registerGlucosa = () => {
+    setRegisterGlucosaToday(!registerGlucosaToday);
+  };
+
   useEffect(() => {
     setUpdate(false);
   }, [update, user]);
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, user, changeAuthenticat, changeUser }}
+      value={{
+        isAuthenticated,
+        user,
+        registerGlucosaToday,
+        changeAuthenticat,
+        changeUser,
+        registerGlucosa,
+      }}
     >
       {children}
     </AuthContext.Provider>
