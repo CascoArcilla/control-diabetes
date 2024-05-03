@@ -1,4 +1,4 @@
-import { Form, Navigate, useActionData } from "react-router-dom";
+import { Form, Link, Navigate, useActionData } from "react-router-dom";
 import { createAlimento } from "../../storage/alimentos";
 import { useAuth } from "../../auth/AuthPorvider";
 
@@ -102,6 +102,11 @@ export default function FormAlimento() {
         <button type="submit" className="btn btn-primary w-100 fw-bold ">
           Registra alimento
         </button>
+      </div>
+      <div className="container-fluid p-0 mt-2 ">
+        <Link className="btn btn-danger w-100 " to="/registro">
+          Cancelar
+        </Link>
       </div>
     </Form>
   );
