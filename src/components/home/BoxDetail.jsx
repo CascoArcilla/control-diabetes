@@ -1,7 +1,7 @@
 import { FaPencil } from "react-icons/fa6";
 
 export default function BoxDetail({ nameInfo, registerToday, dataInfo }) {
-  const [isRegister, setIsRegister] = useState(registerToday);
+  const isRegister = registerToday;
 
   return (
     <div className="d-flex flex-column text-center border p-2 rounded align-items-center ">

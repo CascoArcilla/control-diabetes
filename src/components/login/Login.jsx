@@ -1,4 +1,4 @@
-import { Form, useActionData } from "react-router-dom";
+import { Form, Navigate, useActionData } from "react-router-dom";
 import { getUserByUserName, getUsers, createUser } from "../../storage/users";
 import { useAuth } from "../../auth/AuthPorvider";
 import { useEffect } from "react";
@@ -44,6 +44,7 @@ export default function Login() {
         if (newUser) {
           changeUser(newUser);
           changeAuthenticat();
+          return <Navigate to="/home" />;
         }
       }
     }

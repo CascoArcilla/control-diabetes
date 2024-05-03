@@ -1,4 +1,4 @@
-import { getTimeDate } from "../../assets/functions/getTimeFormater";
+import { getTimeDate } from "../../functions/getTimeFormater";
 
 export default function HistorialGlucosa({ todayGlucosa }) {
   return (

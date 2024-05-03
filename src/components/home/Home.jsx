@@ -1,13 +1,12 @@
+import { Navigate, useLoaderData } from "react-router-dom";
 import { useAuth } from "../../auth/AuthPorvider";
 import { getRegistrosM } from "../../storage/registros";
 import HistorialGlucosa from "../graficos/HistorialGlucosa";
 import DetailToday from "./DetailToday";
 
-export default function Home() {
-  const { user } = useAuth();
-
+export async function loader({ params }) {
   // registros de un mock para hacer el frond
-  const results = getRegistrosM(); 
+  const results = getRegistrosM();
 
   // Simulamos el dia actucal
   const timestampToday = 1713551346585;
@@ -25,13 +24,21 @@ export default function Home() {
     }
   });
 
+  return { todadayRegisters };
+}
+
+export default function Home() {
+  const { user } = useAuth();
+  const { todadayRegisters } = useLoaderData();
+
   return (
     <div className="container-sm d-flex flex-column ">
       <h1 className="text-center">
-        Bienvenido <span className="text-capitalize  ">{user.nombre}</span>
+        Bienvenido{" "}
+        <span className="text-capitalize ">{user.nombre ?? "No name"}</span>
       </h1>
       <h3 className="text-center mt-3 fw-bold ">Tus metricas de hoy</h3>
-      <DetailToday registers={results} />
+      <DetailToday registersToday={todadayRegisters} />
       <HistorialGlucosa todayGlucosa={todadayRegisters} />
     </div>
   );

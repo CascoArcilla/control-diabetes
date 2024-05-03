@@ -1,26 +1,11 @@
-import { Link, Outlet, useLoaderData, Form, Navigate } from "react-router-dom";
-import { getContacts, createContact } from "../storage/contacts";
-import Header from "../components/header/Hedaer";
-import Nav from "../components/navigation/Nav";
-
-export async function action() {
-  const contact = await createContact();
-  return { contact };
-}
-
-export async function loader() {
-  const contacts = await getContacts();
-  return { contacts };
-}
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthPorvider";
+import NoLogin from "../layaults/NoLogin";
 
 export default function Root() {
-  return (
-    <>
-      <Header />
-      <div className="container-sm">
-        <Outlet />
-      </div>
-      <Nav />
-    </>
-  );
+  const { isAuthenticated } = useAuth();
+
+  if (isAuthenticated) return <Navigate to="/home" />;
+
+  return <NoLogin />;
 }
