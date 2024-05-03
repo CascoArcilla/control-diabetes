@@ -1,46 +1,30 @@
-import { Form, useActionData } from "react-router-dom";
-import { getUserByUserName, getUsers, createUser } from "../../storage/users";
+import { Form, Navigate, useActionData } from "react-router-dom";
+import { getUserByUserName } from "../../storage/users";
 import { useAuth } from "../../auth/AuthPorvider";
 import { useEffect } from "react";
 
-export async function action({ request, params }) {
+export async function action({ request }) {
   const formData = await request.formData();
-  const updates = Object.fromEntries(formData);
+  const dataFormObject = Object.fromEntries(formData);
 
-  if (updates.nombre) {
-    let users = await getUsers();
-    let userEqual = users.find((user) => user.username == updates.username);
-    if (userEqual)
-      return { message: "Ya existe un usuario con ese Username", state: false };
+  const user = await getUserByUserName(dataFormObject.username);
+  if (!user) return { message: "Usurio no encontrado", state: false };
 
-    let passwordsEqueal = updates.password == updates.verifyPassword;
-    if (!passwordsEqueal)
-      return { message: "Contraseñas no coinciden", state: false };
+  const passwordOk = user.password == dataFormObject.password;
+  if (!passwordOk) return { message: "Contrasña incorrecta", state: false };
 
-    const { verifyPassword, ...newDataUser } = updates;
-
-    let user = await createUser(newDataUser);
-
-    return { message: "Ok", state: true };
-  } else {
-    const user = await getUserByUserName(updates.username);
-
-    if (!user) return { message: "Usurio no encontrado", state: false };
-    const passwordOk = user.password == updates.password;
-    if (!passwordOk) return { message: "Contrasña incorrecta", state: false };
-    const { password, ...newUser } = user;
-    return { state: true, user: newUser };
-  }
+  const { password, ...newUser } = user;
+  return { state: true, user: newUser };
 }
 
 export default function Login() {
   const action = useActionData();
-  const { changeUser, changeAuthenticat } = useAuth();
+  const { changeUser, changeAuthenticat, isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (action) {
       if (action.state) {
-        let newUser = action ? action.user : false;
+        let newUser = action ? action.user : null;
         if (newUser) {
           changeUser(newUser);
           changeAuthenticat();
@@ -48,6 +32,10 @@ export default function Login() {
       }
     }
   }, [action]);
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" />;
+  }
 
   return (
     <Form

@@ -1,8 +1,8 @@
-import { Form, Navigate, useActionData } from "react-router-dom";
+import { Form, Link, Navigate, useActionData } from "react-router-dom";
 import { useAuth } from "../../auth/AuthPorvider";
 import { createRegistro } from "../../storage/registros";
 
-export async function action({ request, params }) {
+export async function action({ request }) {
   const formData = await request.formData();
   const dataGlucosa = Object.fromEntries(formData);
   const newGlucosa = await createRegistro(dataGlucosa);
@@ -78,6 +78,11 @@ export default function FormGlucosa() {
         <button type="submit" className="btn btn-primary w-100 ">
           Registrar
         </button>
+      </div>
+      <div className="container-fluid p-0 mt-2 ">
+        <Link className="btn btn-danger w-100 " to="/registro">
+          Cancelar
+        </Link>
       </div>
     </Form>
   );

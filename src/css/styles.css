@@ -27,6 +27,11 @@ body {
     border-right: 5px solid black;
 }
 
+.disabled-link {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 #root {
     padding: 0;
     min-height: max-content;

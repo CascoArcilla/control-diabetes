@@ -1,16 +1,16 @@
 import { Navigate } from "react-router-dom";
-import Perfil from "../components/perfil/Perfil";
-import LoginInterfaz from "../layaults/LoginInterface";
 import { useAuth } from "../auth/AuthPorvider";
+import Home from "../components/home/Home";
+import LoginInterfaz from "../layaults/LoginInterface";
 
-export default function PerfilRoot() {
+export default function HomeRoot() {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) return <Navigate to="/" />;
 
   return (
     <LoginInterfaz>
-      <Perfil />
+      <Home />
     </LoginInterfaz>
   );
 }

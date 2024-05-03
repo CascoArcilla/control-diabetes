@@ -1,63 +1,30 @@
 import { useEffect, useState } from "react";
-import { FaPencil } from "react-icons/fa6";
 import { useAuth } from "../../auth/AuthPorvider";
+import BoxDetail from "./BoxDetail";
 
-export default function DetailToday({ registers }) {
-  const { registerGlucosaToday, registerGlucosa } = useAuth();
-  const [datasToday, setDatasToday] = useState({
-    glucosa: 0,
-    calorias: 0,
-  });
+export default function DetailToday({ registersToday }) {
+  const { isRegisterGlucosa, confirmRegisterGlucosa } = useAuth();
+  const [glucosaToday, setGlucosaToday] = useState(0);
 
   useEffect(() => {
-    let dataToday = registers.filter((register) => {
-      let registerFecha = new Date(register.fecha);
-      let timestamp = Date.now();
-      let fechaNow = new Date(timestamp);
+    // comprobamos si hay registros de glucosa hoy, si hay confimamos que existen
+    if (registersToday) {
+      confirmRegisterGlucosa();
+      
+      // aqui se debe igualar el nivel de glucosa actual
+      let newDataToday = registersToday[0].nivelGlucosa;
 
-      if (registerFecha.getFullYear() == fechaNow.getFullYear()) {
-        if (registerFecha.getMonth() == fechaNow.getMonth()) {
-          if (registerFecha.getDate() == fechaNow.getDate()) {
-            return register;
-          }
-        }
-      }
-    });
-
-    if (dataToday) {
-      registerGlucosa();
-      let newDataToday = {
-        glucosa: 120,
-        calorias: 315,
-      };
-
-      setDatasToday(newDataToday);
+      setGlucosaToday(newDataToday);
     }
   }, []);
 
   return (
     <div className="container-fluid d-flex justify-content-around gap-3 ">
       <BoxDetail
-        dato="Glucosa"
-        register={registerGlucosaToday}
-        info={datasToday.glucosa}
+        nameInfo="Glucosa"
+        registerToday={isRegisterGlucosa}
+        dataInfo={glucosaToday}
       />
-      <BoxDetail dato="calorias" register={true} info={datasToday.calorias} />
-    </div>
-  );
-}
-
-function BoxDetail({ dato, register, info }) {
-  const [isRegister, setIsRegister] = useState(true);
-
-  return (
-    <div className="d-flex flex-column text-center border p-2 rounded align-items-center ">
-      <p className="m-0 text-capitalize ">{dato}</p>
-      {isRegister ? (
-        <p className="m-0 ">{info}</p>
-      ) : (
-        <FaPencil style={{ fontSize: "20px" }} />
-      )}
     </div>
   );
 }
