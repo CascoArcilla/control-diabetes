@@ -9,14 +9,9 @@ function setRegistros(registros) {
 
 export function getRegistrosM() {
   const newResults = result.sort(sortBy("last", "fecha"));
-  const sendResults = newResults.map((registro) => {
-    return {
-      ...registro,
-      fecha: registro.fecha.slice(0, 10),
-    };
-  });
+  newResults.reverse();
 
-  return sendResults;
+  return newResults;
 }
 
 export async function getRegistros(query) {
