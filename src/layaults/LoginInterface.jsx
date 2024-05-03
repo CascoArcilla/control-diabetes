@@ -5,12 +5,12 @@ export default function LoginInterfaz({ children }) {
   return (
     <>
       <Header />
-      <div
-        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center flex-grow-1 pt-2 "
-        style={{ marginBottom: "50px" }}
+      <main
+        className="container-sm container-max-600 bg-body d-flex flex-column align-items-center flex-grow-1 pt-2 pb-4 "
+        style={{ marginBottom: "60px" }}
       >
         {children}
-      </div>
+      </main>
       <Nav />
     </>
   );

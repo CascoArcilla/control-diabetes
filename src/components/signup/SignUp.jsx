@@ -21,7 +21,7 @@ export async function action({ request }) {
 
   const { verifyPassword, ...newDataUser } = dataFormObject;
 
-  let user = await createUser(newDataUser);
+  await createUser(newDataUser);
 
   return { message: "Ok", state: true };
 }
@@ -63,7 +63,7 @@ export default function SignUp() {
           <div className="container-fluid p-0 d-flex gap-1 ">
             <div>
               <label
-                htmlFor="exampleInputEmail1"
+                htmlFor="input-name"
                 className="form-label fw-bold m-0 p-0"
               >
                 Nombre
@@ -71,7 +71,7 @@ export default function SignUp() {
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="input-name"
                 name="nombre"
                 required
               />
@@ -156,7 +156,7 @@ export default function SignUp() {
           </div>
           <div className="container-fluid p-0 ">
             <label
-              htmlFor="exampleInputPassword1"
+              htmlFor="input-password"
               className="form-label fw-bold m-0 p-0"
             >
               Contraseña
@@ -164,7 +164,7 @@ export default function SignUp() {
             <input
               type="password"
               className="form-control"
-              id="exampleInputPassword1"
+              id="input-password"
               name="password"
               required
             />

@@ -1,6 +1,6 @@
 # Control diabetes
 
-Esta app tiene como finalidad registrar la glocusa del pacient y recomendarle un plan alimenticio para controlar mejor la diabetes
+Esta app tiene como finalidad registrar la glocusa del usuario y recomendarle las calorias y macronutrientes para controlar mejor la diabetes
 
 ## En general
 - Fomulario para registrar glocusa [✓]
