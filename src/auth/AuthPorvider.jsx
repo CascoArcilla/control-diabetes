@@ -3,9 +3,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({});
-  const [registerGlucosaToday, setRegisterGlucosaToday] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // para saber si el usario esta autentificado
+  const [user, setUser] = useState({}); // la informacion util del usario como nombre, usarname, correo, etc.
+  const [isRegisterGlucosa, setIsRegisterGlucosa] = useState(false); // saber si el usario ya ha registrado su glucosa el dia actual
   const [update, setUpdate] = useState(false);
 
   const changeAuthenticat = () => {
@@ -16,8 +16,8 @@ export function AuthProvider({ children }) {
     setUser(newUser);
   };
 
-  const registerGlucosa = () => {
-    setRegisterGlucosaToday(!registerGlucosaToday);
+  const confirmRegisterGlucosa = () => {
+    setIsRegisterGlucosa(!isRegisterGlucosa);
   };
 
   useEffect(() => {
@@ -29,10 +29,10 @@ export function AuthProvider({ children }) {
       value={{
         isAuthenticated,
         user,
-        registerGlucosaToday,
+        isRegisterGlucosa,
         changeAuthenticat,
         changeUser,
-        registerGlucosa,
+        confirmRegisterGlucosa,
       }}
     >
       {children}

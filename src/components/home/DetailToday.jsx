@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { FaPencil } from "react-icons/fa6";
 import { useAuth } from "../../auth/AuthPorvider";
+import BoxDetail from "./BoxDetail";
 
 export default function DetailToday({ registers }) {
-  const { registerGlucosaToday, registerGlucosa } = useAuth();
+  const { isRegisterGlucosa, confirmRegisterGlucosa } = useAuth();
   const [datasToday, setDatasToday] = useState({
     glucosa: 0,
     calorias: 0,
@@ -25,7 +25,7 @@ export default function DetailToday({ registers }) {
     });
 
     if (dataToday) {
-      registerGlucosa();
+      confirmRegisterGlucosa();
       let newDataToday = {
         glucosa: 120,
         calorias: 315,
@@ -39,25 +39,10 @@ export default function DetailToday({ registers }) {
     <div className="container-fluid d-flex justify-content-around gap-3 ">
       <BoxDetail
         dato="Glucosa"
-        register={registerGlucosaToday}
+        register={isRegisterGlucosa}
         info={datasToday.glucosa}
       />
-      <BoxDetail dato="calorias" register={true} info={datasToday.calorias} />
-    </div>
-  );
-}
-
-function BoxDetail({ dato, register, info }) {
-  const [isRegister, setIsRegister] = useState(true);
-
-  return (
-    <div className="d-flex flex-column text-center border p-2 rounded align-items-center ">
-      <p className="m-0 text-capitalize ">{dato}</p>
-      {isRegister ? (
-        <p className="m-0 ">{info}</p>
-      ) : (
-        <FaPencil style={{ fontSize: "20px" }} />
-      )}
+      <BoxDetail dato="calorias" register={false} info={datasToday.calorias} />
     </div>
   );
 }
