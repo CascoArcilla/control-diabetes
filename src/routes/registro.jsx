@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function RegistroRoot() {
   const { isAuthenticated } = useAuth();
-  const [defaultMenu, setDefaultMenu] = useState(<MenuForm />);
+  const [menu, setmenu] = useState(<MenuForm />);
 
   const location = useLocation();
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function RegistroRoot() {
 
   return (
     <LoginInterfaz>
-      {defaultMenu ? defaultMenu : ""}
+      {menu ? menu : ""}
       <Outlet />
     </LoginInterfaz>
   );

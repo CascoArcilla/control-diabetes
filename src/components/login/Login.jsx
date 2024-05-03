@@ -35,20 +35,23 @@ export async function action({ request, params }) {
 
 export default function Login() {
   const action = useActionData();
-  const { changeUser, changeAuthenticat } = useAuth();
+  const { changeUser, changeAuthenticat, isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (action) {
       if (action.state) {
-        let newUser = action ? action.user : false;
+        let newUser = action ? action.user : null;
         if (newUser) {
           changeUser(newUser);
           changeAuthenticat();
-          return <Navigate to="/home" />;
         }
       }
     }
   }, [action]);
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" />;
+  }
 
   return (
     <Form
