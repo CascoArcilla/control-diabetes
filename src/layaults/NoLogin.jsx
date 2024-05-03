@@ -1,22 +1,16 @@
-import { useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/header/Hedaer";
 import Login from "../components/login/Login";
 
 export default function NoLogin() {
-  const [position, setPosition] = useState("login");
-
-  const changePosition = () => {
-    position == "login" ? setPosition("signup") : setPosition("login");
-  };
+  const location = useLocation();
 
   return (
     <>
-      <Navigate to="/" />
-      <Header position={position} changePosition={changePosition} />
-      <div className="container-sm container-max-600 bg-body d-flex flex-column align-items-center flex-grow-1  pt-4 ">
-        {position == "login" && <Login />}
-        {position == "signup" && <Outlet />}
+      <Header />
+      <div className="container-sm container-max-600 bg-body d-flex flex-column align-items-center flex-grow-1 pt-4 ">
+        {location.pathname == "/" && <Login />}
+        {location.pathname == "/sign-up" && <Outlet />}
       </div>
     </>
   );

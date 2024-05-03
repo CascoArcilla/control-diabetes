@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../../auth/AuthPorvider";
 
-export default function Header({ position, changePosition }) {
+export default function Header() {
   const { isAuthenticated, changeAuthenticat } = useAuth();
 
   return (
@@ -12,20 +13,12 @@ export default function Header({ position, changePosition }) {
         <h2 className="fw-bolder">DiabeTics</h2>
         {!isAuthenticated ? (
           <div className="d-flex gap-1 ">
-            <button
-              className="btn btn-primary "
-              disabled={position == "login"}
-              onClick={changePosition}
-            >
+            <Link className="btn btn-primary" to="/">
               Login
-            </button>
-            <button
-              className="btn btn-primary "
-              disabled={position == "signup"}
-              onClick={changePosition}
-            >
+            </Link>
+            <Link to="/sign-up" className="btn btn-primary ">
               Sign Up
-            </button>
+            </Link>
           </div>
         ) : (
           <div>

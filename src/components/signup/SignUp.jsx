@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form, Navigate, useActionData } from "react-router-dom";
 import { createUser, getUsers } from "../../storage/users";
+import { useAuth } from "../../auth/AuthPorvider";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -27,6 +28,8 @@ export async function action({ request }) {
 
 export default function SignUp() {
   const action = useActionData();
+  const { isAuthenticated } = useAuth();
+
   let [userRegister, setUserRegister] = useState(false);
   useEffect(() => {
     if (action) {
@@ -36,9 +39,8 @@ export default function SignUp() {
     }
   }, [action]);
 
-  if (action) {
-    return <Navigate to="/" />;
-  }
+  if (userRegister) return <Navigate to="/" />;
+  if (isAuthenticated) return <Navigate to="/home" />;
 
   return (
     <>
