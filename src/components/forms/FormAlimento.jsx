@@ -2,7 +2,7 @@ import { Form, Link, Navigate, useActionData } from "react-router-dom";
 import { createAlimento } from "../../storage/alimentos";
 import { useAuth } from "../../auth/AuthPorvider";
 
-export async function action({ request, params }) {
+export async function action({ request }) {
   const formData = await request.formData();
   const dataAlimento = Object.fromEntries(formData);
 

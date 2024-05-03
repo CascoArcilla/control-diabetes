@@ -1,6 +1,8 @@
-import { Navigate, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { useAuth } from "../../auth/AuthPorvider";
 import { getRegistrosM } from "../../storage/registros";
+import { isEqualDates } from "../../functions/time";
+
 import HistorialGlucosa from "../graficos/HistorialGlucosa";
 import DetailToday from "./DetailToday";
 
@@ -8,19 +10,13 @@ export async function loader({ params }) {
   // registros de un mock para hacer el frond
   const results = getRegistrosM();
 
-  // Simulamos el dia actucal
+  // Simulamos el dia actucal para usar los mocks
   const timestampToday = 1713551346585;
-  const dateToday = new Date(timestampToday);
 
-  // De los registros de los moccks obtenemos los del dia actual simulado
+  // De los registros de glucosa de los mocks obtenemos los del dia actual simulado
   const todadayRegisters = results.filter((register) => {
-    let registerDate = new Date(register.fecha);
-    if (registerDate.getFullYear() == dateToday.getFullYear()) {
-      if (registerDate.getMonth() == dateToday.getMonth()) {
-        if (registerDate.getDate() == dateToday.getDate()) {
-          return register;
-        }
-      }
+    if (isEqualDates(timestampToday, register.fecha)) {
+      return register;
     }
   });
 

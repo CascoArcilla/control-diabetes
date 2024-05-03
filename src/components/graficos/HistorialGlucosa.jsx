@@ -1,4 +1,4 @@
-import { getTimeDate } from "../../functions/getTimeFormater";
+import { getTimeDate, getTimeHours } from "../../functions/time";
 
 export default function HistorialGlucosa({ todayGlucosa }) {
   return (
@@ -24,10 +24,4 @@ export default function HistorialGlucosa({ todayGlucosa }) {
       </div>
     </div>
   );
-}
-
-function getTimeHours(timestamp) {
-  let time = new Date(timestamp);
-  let hours = time.getHours();
-  return hours;
 }

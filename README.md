@@ -2,11 +2,26 @@
 
 Esta app tiene como finalidad registrar la glocusa del pacient y recomendarle un plan alimenticio para controlar mejor la diabetes
 
-- Registrar glocusa
-- Mostrar el historial de registros
-- Crear y sugerir un plan de alimentacion
-- Mostrar perfil del usuario con su informacion
+## En general
+- Fomulario para registrar glocusa [✓]
+- Fomulario para registrar alimentos (calorias) [✓]
+- Mostrar el historial de registros de glucosa en una ruta
+- Mostrar el historial de registros de calorias en una ruta
+- Mostrar los macronurtrientes necesarios para el dia
+- Mostrar las calorias necesarios para el dia
+- Mostrar la ultima medicion de glucosa del dia
+- Mostrar perfil del usuario con su informacion [-] aun se deben mejorara los estilos
 - Crear una barra para navegar
+
+## En el home
+- Crear mocks para los alimentos y calcular las calorias totales que ha consumido
+- Buscar y adaptar la formula para calcular las calorias normales que el usuario puede ingerir
+- Buscar y adaptar la formula para calcular las calorias que el usuario puede ingerir dependiendo del tipo de diabetes que posee y la glucosa que registro en el dia
+- Buscar y usar una libreria para poder mostrar con una grafica el registro tanto de glucosa como de calorias del dia del usario
+
+## Estilos
+
+## En un futuro
 - Mas funciones quedan pendientes
 
 Currently, two official plugins are available:
