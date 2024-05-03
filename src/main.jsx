@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import ErrorPage from "./error-page.jsx";
 import { action as loginAction } from "./components/login/Login.jsx";
+import SignUp, { action as signUpAction } from "./components/signup/SignUp.jsx";
 import Root from "./routes/root.jsx";
 import RegistroRoot from "./routes/registro.jsx";
 import PerfilRoot from "./routes/perfil.jsx";
@@ -29,6 +30,13 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     action: loginAction,
+    children: [
+      {
+        path: "/sign-up",
+        element: <SignUp />,
+        action: signUpAction,
+      },
+    ],
   },
   {
     path: "home",
@@ -39,6 +47,7 @@ const router = createBrowserRouter([
   {
     path: "registro",
     element: <RegistroRoot />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "glucosa",
@@ -51,7 +60,6 @@ const router = createBrowserRouter([
         action: alimentoAction,
       },
     ],
-    errorElement: <ErrorPage />,
   },
   {
     path: "perfil",

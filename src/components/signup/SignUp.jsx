@@ -1,5 +1,29 @@
 import { useEffect, useState } from "react";
 import { Form, Navigate, useActionData } from "react-router-dom";
+import { createUser, getUsers } from "../../storage/users";
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const dataFormObject = Object.fromEntries(formData);
+
+  let users = await getUsers();
+  let userEqual = users.find(
+    (user) => user.username == dataFormObject.username
+  );
+  if (userEqual)
+    return { message: "Ya existe un usuario con ese Username", state: false };
+
+  let passwordsEqueal =
+    dataFormObject.password == dataFormObject.verifyPassword;
+  if (!passwordsEqueal)
+    return { message: "Contraseñas no coinciden", state: false };
+
+  const { verifyPassword, ...newDataUser } = dataFormObject;
+
+  let user = await createUser(newDataUser);
+
+  return { message: "Ok", state: true };
+}
 
 export default function SignUp() {
   const action = useActionData();
@@ -11,6 +35,11 @@ export default function SignUp() {
       }
     }
   }, [action]);
+
+  if (action) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <>
       {userRegister ? (
