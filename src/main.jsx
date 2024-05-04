@@ -6,22 +6,22 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import { signUpAction } from "./functions/actions/actionSignup.js";
+import { loginAction } from "./functions/actions/actionLogin.js";
+import { glucosaAction } from "./functions/actions/actionGlucosa.js";
+import { alimentoAction } from "./functions/actions/actionAlimento.js";
+
+import { homeLoader } from "./loaders/loaderHome.js";
+
 import ErrorPage from "./error-page.jsx";
-import { action as loginAction } from "./components/login/Login.jsx";
-import SignUp, { action as signUpAction } from "./components/signup/SignUp.jsx";
+import SignUp from "./components/signup/SignUp.jsx";
 import Root from "./routes/root.jsx";
 import RegistroRoot from "./routes/registro.jsx";
 import PerfilRoot from "./routes/perfil.jsx";
 
 import { AuthProvider } from "./auth/AuthPorvider.jsx";
-import FormGlucosa, {
-  action as glucosaAction,
-} from "./components/forms/FormGlucosa.jsx";
-import FormAlimento, {
-  action as alimentoAction,
-} from "./components/forms/FormAlimento.jsx";
-
-import { loader as homeLoader } from "./components/home/Home.jsx";
+import FormGlucosa from "./components/forms/FormGlucosa.jsx";
+import FormAlimento from "./components/forms/FormAlimento.jsx";
 import HomeRoot from "./routes/home.jsx";
 
 const router = createBrowserRouter([
