@@ -1,72 +1,72 @@
 {
   "result": [
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 107,
-      "fecha": "2024-01-19T15:02:03.958Z",
+      "fecha": 1713551346585,
       "nivelInsulina": 25,
       "ayuno": "true"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 110,
-      "fecha": "2024-01-18T00:43:06.557Z",
+      "fecha": 1713551244585,
       "nivelInsulina": 330,
       "ayuno": "false"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 160,
-      "fecha": "2024-01-11T06:38:45.969Z",
+      "fecha": 1713551142585,
       "nivelInsulina": 278,
       "ayuno": "true"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 485,
-      "fecha": "2024-01-23T16:19:55.501Z",
+      "fecha": 1713001346585,
       "nivelInsulina": 445,
       "ayuno": "false"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 371,
-      "fecha": "2024-01-16T04:12:09.663Z",
+      "fecha": 1713001346585,
       "nivelInsulina": 86,
       "ayuno": "true"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 346,
-      "fecha": "2024-01-10T16:31:03.745Z",
+      "fecha": 1713001346585,
       "nivelInsulina": 175,
       "ayuno": "false"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 415,
-      "fecha": "2024-01-09T21:45:58.564Z",
+      "fecha": 1713111346585,
       "nivelInsulina": 98,
       "ayuno": "true"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 407,
-      "fecha": "2024-01-15T10:41:06.490Z",
+      "fecha": 1713111346585,
       "nivelInsulina": 72,
       "ayuno": "false"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 75,
-      "fecha": "2024-01-19T06:22:32.823Z",
+      "fecha": 1713111346585,
       "nivelInsulina": 221,
       "ayuno": "true"
     },
     {
-      "idusuario": "kjbaot8",
+      "idusuario": "6kfxho2",
       "nivelGlucosa": 145,
-      "fecha": "2024-01-13T18:42:39.101Z",
+      "fecha": 1713441346585,
       "nivelInsulina": 424,
       "ayuno": "true"
     }

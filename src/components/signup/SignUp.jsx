@@ -1,8 +1,35 @@
 import { useEffect, useState } from "react";
 import { Form, Navigate, useActionData } from "react-router-dom";
+import { createUser, getUsers } from "../../storage/users";
+import { useAuth } from "../../auth/AuthPorvider";
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const dataFormObject = Object.fromEntries(formData);
+
+  let users = await getUsers();
+  let userEqual = users.find(
+    (user) => user.username == dataFormObject.username
+  );
+  if (userEqual)
+    return { message: "Ya existe un usuario con ese Username", state: false };
+
+  let passwordsEqueal =
+    dataFormObject.password == dataFormObject.verifyPassword;
+  if (!passwordsEqueal)
+    return { message: "Contraseñas no coinciden", state: false };
+
+  const { verifyPassword, ...newDataUser } = dataFormObject;
+
+  await createUser(newDataUser);
+
+  return { message: "Ok", state: true };
+}
 
 export default function SignUp() {
   const action = useActionData();
+  const { isAuthenticated } = useAuth();
+
   let [userRegister, setUserRegister] = useState(false);
   useEffect(() => {
     if (action) {
@@ -11,6 +38,10 @@ export default function SignUp() {
       }
     }
   }, [action]);
+
+  if (userRegister) return <Navigate to="/" />;
+  if (isAuthenticated) return <Navigate to="/home" />;
+
   return (
     <>
       {userRegister ? (
@@ -32,7 +63,7 @@ export default function SignUp() {
           <div className="container-fluid p-0 d-flex gap-1 ">
             <div>
               <label
-                htmlFor="exampleInputEmail1"
+                htmlFor="input-name"
                 className="form-label fw-bold m-0 p-0"
               >
                 Nombre
@@ -40,7 +71,7 @@ export default function SignUp() {
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="input-name"
                 name="nombre"
                 required
               />
@@ -125,7 +156,7 @@ export default function SignUp() {
           </div>
           <div className="container-fluid p-0 ">
             <label
-              htmlFor="exampleInputPassword1"
+              htmlFor="input-password"
               className="form-label fw-bold m-0 p-0"
             >
               Contraseña
@@ -133,7 +164,7 @@ export default function SignUp() {
             <input
               type="password"
               className="form-control"
-              id="exampleInputPassword1"
+              id="input-password"
               name="password"
               required
             />
