@@ -1,21 +1,6 @@
 import { Form, Navigate, useActionData } from "react-router-dom";
-import { getUserByUserName } from "../../storage/users";
 import { useAuth } from "../../auth/AuthPorvider";
 import { useEffect } from "react";
-
-export async function action({ request }) {
-  const formData = await request.formData();
-  const dataFormObject = Object.fromEntries(formData);
-
-  const user = await getUserByUserName(dataFormObject.username);
-  if (!user) return { message: "Usurio no encontrado", state: false };
-
-  const passwordOk = user.password == dataFormObject.password;
-  if (!passwordOk) return { message: "Contrasña incorrecta", state: false };
-
-  const { password, ...newUser } = user;
-  return { state: true, user: newUser };
-}
 
 export default function Login() {
   const action = useActionData();
