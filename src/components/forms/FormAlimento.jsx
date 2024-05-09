@@ -1,19 +1,5 @@
 import { Form, Link, Navigate, useActionData } from "react-router-dom";
-import { createAlimento } from "../../storage/alimentos";
 import { useAuth } from "../../auth/AuthPorvider";
-
-export async function action({ request }) {
-  const formData = await request.formData();
-  const dataAlimento = Object.fromEntries(formData);
-
-  const newDataAlimeto = await createAlimento(dataAlimento);
-
-  if (!newDataAlimeto) {
-    return { message: "Ah ocurrido un error", state: false };
-  }
-
-  return { message: "ok", state: true };
-}
 
 export default function FormAlimento() {
   const action = useActionData();
