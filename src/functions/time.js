@@ -13,6 +13,13 @@ export function getTimeHours (timestamp) {
   return hours
 }
 
+export function getTimeHoursMinutes (timestamp) {
+  let time = new Date(timestamp)
+  let hours = time.getHours()
+  let minutes = time.getMinutes()
+  return `${hours}:${minutes}`
+}
+
 export function isEqualDates (timestamp_1, timestamp_2) {
   let date_1 = new Date(timestamp_1)
   let date_2 = new Date(timestamp_2)

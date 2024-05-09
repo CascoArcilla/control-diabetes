@@ -1,4 +1,4 @@
-import { getTimeDate, getTimeHours } from "../../functions/time";
+import { getTimeDate, getTimeHoursMinutes } from "../../functions/time";
 
 export default function HistorialGlucosa({ todayGlucosa }) {
   return (
@@ -8,16 +8,17 @@ export default function HistorialGlucosa({ todayGlucosa }) {
         {todayGlucosa.map((registro) => {
           return (
             <div
-              key={`${registro.nivelGlucosa}${registro.nivelInsulina}`}
+              key={`${registro.glucosa}${registro.createdAt}`}
               className="text-start border border-2 border-black p-1 rounded "
               style={{ fontSize: "14px" }}
             >
-              <p className="m-0 ">Fecha: {getTimeDate(registro.fecha)}</p>
-              <p className="m-0 ">Hora: {getTimeHours(registro.fecha)}</p>
-              <p className="m-0 ">Nivel glucosa: {registro.nivelGlucosa}</p>
+              <p className="m-0 ">Fecha: {getTimeDate(registro.createdAt)}</p>
               <p className="m-0 ">
-                Nivel de insulina: {registro.nivelInsulina}
+                Hora: {`${getTimeHoursMinutes(registro.createdAt)} Hrs`}
               </p>
+              <p className="m-0 ">Nivel glucosa: {registro.glucosa}</p>
+              <p className="m-0 ">Ayuno: {registro.ayuno}</p>
+              <p className="m-0 ">Nivel de insulina: Aun no definido</p>
             </div>
           );
         })}

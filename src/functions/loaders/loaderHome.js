@@ -1,16 +1,21 @@
 import { isEqualDates } from "../time"
-import { getRegistrosM } from "../../storage/registros"
+import { getRegistros, getRegistrosUser } from "../../storage/registros"
 
 export async function homeLoader () {
+    let todadayRegisters
     // registros de un mock para hacer el frond
-    const results = getRegistrosM()
+    const results = await getRegistros()
+    if (results.length == 0) {
+        todadayRegisters = []
+        return { todadayRegisters }
+    }
 
-    // Simulamos el dia actucal para usar los mocks
-    const timestampToday = 1713551346585
+    // Dia actucal para usar
+    const timestampToday = Date.now()
 
     // De los registros de glucosa de los mocks obtenemos los del dia actual simulado
-    const todadayRegisters = results.filter((register) => {
-        if (isEqualDates(timestampToday, register.fecha)) {
+    todadayRegisters = results.filter((register) => {
+        if (isEqualDates(timestampToday, register.createAt)) {
             return register
         }
     })
