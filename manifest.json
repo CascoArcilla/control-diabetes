@@ -1,0 +1,9 @@
+{
+    "name": "DiabeTics",
+    "short_name": "diabetics",
+    "description": "App para el control de glucosa",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007bff"
+}
