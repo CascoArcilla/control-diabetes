@@ -11,7 +11,7 @@ import { loginAction } from "./functions/actions/actionLogin.js";
 import { glucosaAction } from "./functions/actions/actionGlucosa.js";
 import { alimentoAction } from "./functions/actions/actionAlimento.js";
 
-import { homeLoader } from "./loaders/loaderHome.js";
+import { homeLoader } from "./functions/loaders/loaderHome.js";
 
 import ErrorPage from "./error-page.jsx";
 import SignUp from "./components/signup/SignUp.jsx";

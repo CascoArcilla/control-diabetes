@@ -5,13 +5,12 @@ import LoginInterfaz from "../layaults/LoginInterface";
 
 export default function RegistroRoot() {
   const { isAuthenticated } = useAuth();
+  const { pathname } = useLocation();
   if (!isAuthenticated) return <Navigate to="/" />;
-
-  const location = useLocation();
 
   return (
     <LoginInterfaz>
-      {location.pathname == "/registro" ? <MenuForm /> : ""}
+      {pathname == "/registro" && <MenuForm />}
       <Outlet />
     </LoginInterfaz>
   );
