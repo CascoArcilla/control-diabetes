@@ -1,7 +1,7 @@
-import { isEqualDates } from "../functions/time"
-import { getRegistrosM } from "../storage/registros"
+import { isEqualDates } from "../time"
+import { getRegistrosM } from "../../storage/registros"
 
-export async function homeLoader ({ params }) {
+export async function homeLoader () {
     // registros de un mock para hacer el frond
     const results = getRegistrosM()
 
