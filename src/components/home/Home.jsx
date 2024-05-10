@@ -14,7 +14,6 @@ export default function Home() {
         Bienvenido{" "}
         <span className="text-capitalize ">{user.nombre ?? "No name"}</span>
       </h1>
-      <h3 className="text-center mt-3 fw-bold ">Tus metricas de hoy</h3>
       <DetailToday registersToday={lastReisterGlucosa} />
       <HistorialGlucosa todayGlucosa={todadayRegisters} />
     </section>
