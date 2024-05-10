@@ -2,10 +2,18 @@ import { useAuth } from "../../auth/AuthPorvider";
 import BoxDetail from "./BoxDetail";
 
 export default function DetailToday({ registersToday }) {
-  const { isRegisterGlucosa, confirmRegisterGlucosa } = useAuth();
+  const { isRegisterGlucosa, confirmRegisterGlucosa, user } = useAuth();
   let lasteRegisterGlucosa = 0;
   if (registersToday) {
     lasteRegisterGlucosa = registersToday.glucosa;
+  }
+
+  let maxCalories = "";
+
+  if (user.calorias_esperadas) {
+    maxCalories = user.calorias_esperadas;
+  } else {
+    maxCalories = "Indefinido";
   }
 
   const setConfirmGlucosa = () => {
@@ -40,7 +48,7 @@ export default function DetailToday({ registersToday }) {
           nameInfo="Calorias Estimadas"
           to=""
           registerToday={true}
-          dataInfo={2100}
+          dataInfo={maxCalories}
           setConfirm={() => {
             console.log("Se registro caloria");
           }}
