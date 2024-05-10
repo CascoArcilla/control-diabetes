@@ -1,30 +1,60 @@
-import { useEffect, useState } from "react";
 import { useAuth } from "../../auth/AuthPorvider";
 import BoxDetail from "./BoxDetail";
 
 export default function DetailToday({ registersToday }) {
-  const { isRegisterGlucosa, confirmRegisterGlucosa } = useAuth();
-  const [glucosaToday, setGlucosaToday] = useState(0);
+  const { isRegisterGlucosa, confirmRegisterGlucosa, user } = useAuth();
+  let lasteRegisterGlucosa = 0;
+  if (registersToday) {
+    lasteRegisterGlucosa = registersToday.glucosa;
+  }
 
-  useEffect(() => {
-    // comprobamos si hay registros de glucosa hoy, si hay confimamos que existen
-    if (registersToday) {
-      confirmRegisterGlucosa();
-      
-      // aqui se debe igualar el nivel de glucosa actual
-      let newDataToday = registersToday[0].nivelGlucosa;
+  let maxCalories = "";
 
-      setGlucosaToday(newDataToday);
-    }
-  }, []);
+  if (user.calorias_esperadas) {
+    maxCalories = user.calorias_esperadas;
+  } else {
+    maxCalories = "Indefinido";
+  }
+
+  const setConfirmGlucosa = () => {
+    confirmRegisterGlucosa(!isRegisterGlucosa);
+  };
 
   return (
-    <div className="container-fluid d-flex justify-content-around gap-3 ">
-      <BoxDetail
-        nameInfo="Glucosa"
-        registerToday={isRegisterGlucosa}
-        dataInfo={glucosaToday}
-      />
-    </div>
+    <section className="container-fluid">
+      <header className="container-fluid p-0 m-0 ">
+        <h3 className="text-center mt-3 fw-bold ">Información de hoy</h3>
+      </header>
+      <section className="container-fluid d-flex flex-column justify-content-around gap-3 ">
+        <BoxDetail
+          nameInfo="Glucosa Medida"
+          to="glucosa"
+          registerToday={isRegisterGlucosa}
+          dataInfo={lasteRegisterGlucosa}
+          setConfirm={setConfirmGlucosa}
+          showButton={true}
+        />
+        <BoxDetail
+          nameInfo="Calorias Ingestas"
+          to="alimento"
+          registerToday={true}
+          dataInfo={1800}
+          setConfirm={() => {
+            console.log("Se registro caloria");
+          }}
+          showButton={true}
+        />
+        <BoxDetail
+          nameInfo="Calorias Estimadas"
+          to=""
+          registerToday={true}
+          dataInfo={maxCalories}
+          setConfirm={() => {
+            console.log("Se registro caloria");
+          }}
+          showButton={false}
+        />
+      </section>
+    </section>
   );
 }

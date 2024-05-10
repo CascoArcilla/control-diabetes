@@ -1,6 +1,7 @@
 import { Form, Navigate, useActionData } from "react-router-dom";
 import { useAuth } from "../../auth/AuthPorvider";
 import { useEffect } from "react";
+import { calcularCaloriasDiabetesTipo1 } from "../../functions/calculos/calcularCalorias.js";
 
 export default function Login() {
   const action = useActionData();
@@ -11,6 +12,20 @@ export default function Login() {
       if (action.state) {
         let newUser = action ? action.user : null;
         if (newUser) {
+          let calories = calcularCaloriasDiabetesTipo1(
+            newUser.peso,
+            newUser.altura,
+            newUser.edad,
+            newUser.genero,
+            newUser.actividad_fisica
+          );
+
+          let addCalories = {
+            calorias_esperadas: calories,
+          };
+
+          newUser = { ...newUser, ...addCalories };
+
           changeUser(newUser);
           changeAuthenticat();
         }
