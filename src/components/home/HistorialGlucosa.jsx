@@ -36,7 +36,7 @@ export default function HistorialGlucosa({ todayGlucosa }) {
   return (
     <section className="container-fluid text-center pb-2 mt-4 d-flex flex-column flex-grow-1 p-0">
       <header className="container-fluid p-0 m-0 ">
-        <h3 className="fw-bold text-center">Registros hoy</h3>
+        <h3 className="fw-bold text-center">Glucosa hoy</h3>
       </header>
       <article className="container-fluid flex-grow-1 d-flex flex-column p-0 ">
         <GraphicBar

@@ -3,6 +3,10 @@ import BoxDetail from "./BoxDetail";
 
 export default function DetailToday({ registersToday }) {
   const { isRegisterGlucosa, confirmRegisterGlucosa } = useAuth();
+  let lasteRegisterGlucosa = 0;
+  if (registersToday) {
+    lasteRegisterGlucosa = registersToday.glucosa;
+  }
 
   const setConfirmGlucosa = () => {
     confirmRegisterGlucosa(!isRegisterGlucosa);
@@ -18,7 +22,7 @@ export default function DetailToday({ registersToday }) {
           nameInfo="Glucosa Medida"
           to="glucosa"
           registerToday={isRegisterGlucosa}
-          dataInfo={registersToday.glucosa ?? 0}
+          dataInfo={lasteRegisterGlucosa}
           setConfirm={setConfirmGlucosa}
           showButton={true}
         />

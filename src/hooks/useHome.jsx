@@ -23,18 +23,18 @@ export function useHome() {
     const timestampToday = Date.now();
 
     // De los registros de glucosa obtenemos los del dia actual
-    let registers = results.filter((register) => {
+    let registersToday = results.filter((register) => {
       if (isEqualDates(timestampToday, register.createdAt)) {
         return register;
       }
     });
 
-    if (registers && !isRegisterGlucosa) {
+    if (registersToday.length != 0 && !isRegisterGlucosa) {
       confirmRegisterGlucosa(!isRegisterGlucosa);
     }
 
-    setLastReisterGlucosa(registers[0]);
-    return setTodadayRegisters(registers);
+    setLastReisterGlucosa(registersToday[0]);
+    return setTodadayRegisters(registersToday);
   };
 
   return { todadayRegisters, lastReisterGlucosa };

@@ -51,7 +51,7 @@ export default function GraphicBar({ registersGlucosa, timeAtMetric, colors }) {
     labels: timeAtMetric ?? timeAtMetricDefault,
     datasets: [
       {
-        label: "Mangos",
+        label: "Glucosa",
         data: registersGlucosa ?? registersGlucosaDefault,
         backgroundColor: colors ?? colorsDefault,
       },
