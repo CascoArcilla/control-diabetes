@@ -20,7 +20,7 @@ function calcularCaloriasDiabetesTipo1 (peso, altura, edad, actividad) {
         "ligero": 1.375,
         "moderado": 1.55,
         "activo": 1.725,
-        "muy activo": 1.9
+        "muy_activo": 1.9
     }
 
     const factorActividad = factoresActividad[actividad]

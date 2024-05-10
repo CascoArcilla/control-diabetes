@@ -172,6 +172,28 @@ export default function SignUp() {
           </div>
           <div className="container-fluid p-0 ">
             <label
+              htmlFor="select-actividad-fisica"
+              className="form-label fw-bold m-0 p-0"
+            >
+              Su nivel de actividad fisica
+            </label>
+            <select
+              className="form-select"
+              id="select-actividad-fisica"
+              aria-label="Default select example"
+              name="actividad_fisica"
+            >
+              <option selected value="sedentario">
+                Sedentario
+              </option>
+              <option value="ligero">Ligero</option>
+              <option value="moderado">Moderado</option>
+              <option value="activo">Activo</option>
+              <option value="muy_activo">Muy activo</option>
+            </select>
+          </div>
+          <div className="container-fluid p-0 ">
+            <label
               htmlFor="input-password"
               className="form-label fw-bold m-0 p-0"
             >
