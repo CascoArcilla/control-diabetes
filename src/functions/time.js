@@ -17,7 +17,8 @@ export function getTimeHoursMinutes (timestamp) {
   let time = new Date(timestamp)
   let hours = time.getHours()
   let minutes = time.getMinutes()
-  return `${hours}:${minutes}`
+  let finalMinutes = minutes.toString().length == 1 ? `0${minutes}` : minutes
+  return `${hours}:${finalMinutes}`
 }
 
 export function isEqualDates (timestamp_1, timestamp_2) {

@@ -36,9 +36,8 @@ export function useHome() {
 
     // Ontener las calorias totales del dia
     let caloriesToday = 0;
-
     todayRegisterAlimento.forEach((alimento) => {
-      caloriesToday += alimento.calorias;
+      caloriesToday += parseInt(alimento.calorias, 10);
     });
 
     return setTodayAlimentos({ todayRegisterAlimento, caloriesToday });

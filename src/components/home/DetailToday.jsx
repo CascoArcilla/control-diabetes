@@ -1,11 +1,11 @@
 import { useAuth } from "../../auth/AuthPorvider";
 import BoxDetail from "./BoxDetail";
 
-export default function DetailToday({ registersToday }) {
+export default function DetailToday({ registersGlucosaToday, caloriesToday }) {
   const { isRegisterGlucosa, confirmRegisterGlucosa, user } = useAuth();
   let lasteRegisterGlucosa = 0;
-  if (registersToday) {
-    lasteRegisterGlucosa = registersToday.glucosa;
+  if (registersGlucosaToday) {
+    lasteRegisterGlucosa = registersGlucosaToday.glucosa;
   }
 
   let maxCalories = "";
@@ -37,8 +37,8 @@ export default function DetailToday({ registersToday }) {
         <BoxDetail
           nameInfo="Calorias Ingestas"
           to="alimento"
-          registerToday={true}
-          dataInfo={1800}
+          registerToday={caloriesToday != 0}
+          dataInfo={caloriesToday}
           setConfirm={() => {
             console.log("Se registro caloria");
           }}

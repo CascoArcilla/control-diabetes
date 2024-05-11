@@ -17,7 +17,7 @@ export default function HistorialGlucosa({ todayGlucosa }) {
       dataGlucosa.push(registro.glucosa);
 
       let timeHours = getTimeHoursMinutes(registro.createdAt);
-      dataTime.push([timeHours, registro.glucosa]);
+      dataTime.push([`${timeHours} Hrs`, registro.glucosa]);
 
       if (registro.glucosa <= 180 && registro.glucosa >= 100) {
         dataColors.push(colorsDefault["precausion"]);

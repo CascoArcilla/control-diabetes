@@ -9,8 +9,7 @@ export default function Home() {
   const { registerToday, todayAlimentos } = useHome();
   const { registersGlucosaToday, lastReisterGlucosa } = registerToday;
 
-  const { todayRegisterAlimento, caloriesToday } = todayAlimentos;
-  console.log(caloriesToday);
+  const { caloriesToday } = todayAlimentos;
 
   return (
     <section className="container-sm d-flex flex-column flex-grow-1 p-0">
@@ -18,7 +17,10 @@ export default function Home() {
         Bienvenido{" "}
         <span className="text-capitalize ">{user.nombre ?? "No name"}</span>
       </h1>
-      <DetailToday registersToday={lastReisterGlucosa} />
+      <DetailToday
+        registersGlucosaToday={lastReisterGlucosa}
+        caloriesToday={caloriesToday}
+      />
       <HistorialGlucosa todayGlucosa={registersGlucosaToday} />
     </section>
   );
