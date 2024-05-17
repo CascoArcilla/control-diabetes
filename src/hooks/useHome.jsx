@@ -2,40 +2,70 @@ import { useEffect, useState } from "react";
 import { getRegistros } from "../storage/registros";
 import { isEqualDates } from "../functions/time";
 import { useAuth } from "../auth/AuthPorvider";
+import { getAlimentos } from "../storage/alimentos";
 
 export function useHome() {
   const { isRegisterGlucosa, confirmRegisterGlucosa } = useAuth();
-  const [todadayRegisters, setTodadayRegisters] = useState([]);
-  const [lastReisterGlucosa, setLastReisterGlucosa] = useState({});
+  const [registerToday, setRegisterToday] = useState({
+    registersGlucosaToday: [],
+    lastReisterGlucosa: {},
+  });
+  const [todayAlimentos, setTodayAlimentos] = useState({
+    todayRegisterAlimento: [],
+    caloriesToday: 0,
+  });
 
   useEffect(() => {
     getGlucosaRegisters();
+    getAlimentosRegisters();
   }, []);
 
-  const getGlucosaRegisters = async () => {
-    // registros de un mock para hacer el frond
-    let results = await getRegistros();
-    if (results.length == 0) {
-      return setTodadayRegisters([]);
-    }
+  const getAlimentosRegisters = async () => {
+    // Obtner los alimentos del indexStorage
+    let aliemtos = await getAlimentos();
+    if (aliemtos.length == 0) return setTodayAlimentos({ ...todayAlimentos });
 
-    // Dia actucal para usar
     const timestampToday = Date.now();
 
     // De los registros de glucosa obtenemos los del dia actual
-    let registersToday = results.filter((register) => {
+    let todayRegisterAlimento = aliemtos.filter((register) => {
       if (isEqualDates(timestampToday, register.createdAt)) {
         return register;
       }
     });
 
-    if (registersToday.length != 0 && !isRegisterGlucosa) {
+    // Ontener las calorias totales del dia
+    let caloriesToday = 0;
+    todayRegisterAlimento.forEach((alimento) => {
+      caloriesToday += parseInt(alimento.calorias, 10);
+    });
+
+    return setTodayAlimentos({ todayRegisterAlimento, caloriesToday });
+  };
+
+  const getGlucosaRegisters = async () => {
+    // registros de un mock para hacer el frond
+    let results = await getRegistros();
+    if (results.length == 0) return setRegisterToday({ ...registerToday });
+
+    // Dia actucal para usar
+    const timestampToday = Date.now();
+
+    // De los registros de glucosa obtenemos los del dia actual
+    let registersGlucosaToday = results.filter((register) => {
+      if (isEqualDates(timestampToday, register.createdAt)) {
+        return register;
+      }
+    });
+
+    if (registersGlucosaToday.length != 0 && !isRegisterGlucosa) {
       confirmRegisterGlucosa(!isRegisterGlucosa);
     }
 
-    setLastReisterGlucosa(registersToday[0]);
-    return setTodadayRegisters(registersToday);
+    let lastReisterGlucosa = registersGlucosaToday[0];
+
+    return setRegisterToday({ registersGlucosaToday, lastReisterGlucosa });
   };
 
-  return { todadayRegisters, lastReisterGlucosa };
+  return { registerToday, todayAlimentos };
 }

@@ -30,6 +30,18 @@ export default function FormAlimento() {
         />
       </div>
       <div className="container-fluid p-0 ">
+        <label htmlFor="input-calorias" className="form-label fw-bold m-0 p-0 ">
+          Calorias (kcal)
+        </label>
+        <input
+          type="number"
+          className="form-control"
+          id="input-calorias"
+          name="calorias"
+          required
+        />
+      </div>
+      <div className="container-fluid p-0 ">
         <label htmlFor="input-carbo" className="form-label fw-bold m-0 p-0 ">
           Carbohidratos (g)
         </label>
@@ -50,18 +62,6 @@ export default function FormAlimento() {
           className="form-control"
           id="input-grasas"
           name="grasas"
-          required
-        />
-      </div>
-      <div className="container-fluid p-0 ">
-        <label htmlFor="input-calorias" className="form-label fw-bold m-0 p-0 ">
-          Calorias (kcal)
-        </label>
-        <input
-          type="number"
-          className="form-control"
-          id="input-calorias"
-          name="calorias"
           required
         />
       </div>

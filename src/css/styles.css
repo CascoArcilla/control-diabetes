@@ -8,6 +8,14 @@ body {
     flex-direction: column;
 }
 
+#root {
+    padding: 0;
+    min-height: max-content;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .container-max-600 {
     max-width: 600px;
 }
@@ -32,10 +40,11 @@ body {
     pointer-events: none;
 }
 
-#root {
-    padding: 0;
-    min-height: max-content;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+.dt-rotate {
+    transform: rotate(45);
+    transition: 1s;
+}
+
+.dt-rotate::active {
+    transform: rotate(90);
 }
