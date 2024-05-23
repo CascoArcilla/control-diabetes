@@ -3,13 +3,14 @@ import { FiPlusCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 export default function BoxDetail({
-  nameInfo,
-  registerToday,
-  dataInfo,
-  setConfirm,
-  to,
+  nameInfo = "Info Mostrar",
+  registerToday = false,
+  dataInfo = "Valor",
+  setConfirm = null,
+  to = "",
   showButton,
   isVertical = false,
+  className = "",
 }) {
   const toForm = to.toLowerCase();
   let borderDevide = "";

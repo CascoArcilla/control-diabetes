@@ -10,7 +10,7 @@ export default function Header() {
       style={{ maxHeight: "70px" }}
     >
       <div className="container-fluid d-flex justify-content-between align-items-center p-0">
-        <h2 className="fw-bolder">DiabeTics</h2>
+        <h2 className="fw-bolder">DiabeTec</h2>
         {!isAuthenticated ? (
           <div className="d-flex gap-1 ">
             <Link className="btn btn-primary" to="/">

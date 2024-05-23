@@ -20,11 +20,16 @@ export default function Login() {
             newUser.actividad_fisica
           );
 
-          let addCalories = {
+          // Hacer funcion para poder obtner las macronutrientes esperados
+
+          let macroNuntri = { carbo: 175, prote: 125, grasas: 120 };
+
+          let addExtraInfo = {
             calorias_esperadas: calories,
+            macronutrientes: macroNuntri,
           };
 
-          newUser = { ...newUser, ...addCalories };
+          newUser = { ...newUser, ...addExtraInfo };
 
           changeUser(newUser);
           changeAuthenticat();
