@@ -26,24 +26,29 @@ export default function DetailToday({ registersGlucosaToday, caloriesToday }) {
         <h3 className="text-center mt-3 fw-bold ">Información de hoy</h3>
       </header>
       <section className="container-fluid d-flex flex-column justify-content-around gap-3 ">
-        <BoxDetail
-          nameInfo="Glucosa Medida"
-          to="glucosa"
-          registerToday={isRegisterGlucosa}
-          dataInfo={lasteRegisterGlucosa}
-          setConfirm={setConfirmGlucosa}
-          showButton={true}
-        />
-        <BoxDetail
-          nameInfo="Calorias Ingestas"
-          to="alimento"
-          registerToday={caloriesToday != 0}
-          dataInfo={caloriesToday}
-          setConfirm={() => {
-            console.log("Se registro caloria");
-          }}
-          showButton={true}
-        />
+        <section className="container-fluid m-0 p-0 d-flex gap-1 ">
+          <BoxDetail
+            nameInfo="Glucosa Medida"
+            to="glucosa"
+            registerToday={isRegisterGlucosa}
+            dataInfo={lasteRegisterGlucosa}
+            setConfirm={setConfirmGlucosa}
+            showButton={true}
+            isVertical={true}
+          />
+          <BoxDetail
+            nameInfo="Calorias Ingestas"
+            to="alimento"
+            registerToday={caloriesToday != 0}
+            dataInfo={caloriesToday}
+            setConfirm={() => {
+              console.log("Se registro caloria");
+            }}
+            showButton={true}
+            isVertical={true}
+          />
+        </section>
+
         <BoxDetail
           nameInfo="Calorias Estimadas"
           to=""

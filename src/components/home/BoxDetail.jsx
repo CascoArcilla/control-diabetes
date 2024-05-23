@@ -9,13 +9,19 @@ export default function BoxDetail({
   setConfirm,
   to,
   showButton,
+  isVertical = false,
 }) {
   const toForm = to.toLowerCase();
-  const borderDevide = showButton ? "border-end border-black" : "";
+  let borderDevide = "";
+  if (showButton) {
+    borderDevide = isVertical ? "border-bottom" : "border-end";
+  }
+
+  const showHorizontal = isVertical ? "flex-column gap-2 p-2" : "";
 
   return (
     <article
-      className="d-flex text-center align-items-center flex-grow-1 justify-content-around "
+      className={`d-flex text-center align-items-center flex-grow-1 justify-content-around ${showHorizontal}`}
       style={{
         borderColor: "#8088c0",
         borderStyle: "solid",
@@ -23,7 +29,7 @@ export default function BoxDetail({
         borderRadius: "6px",
       }}
     >
-      <div className={`flex-grow-1 p-1 ${borderDevide}`}>
+      <div className={`flex-grow-1 p-1 border-black ${borderDevide} `}>
         <div>
           <p className="m-0 text-capitalize fw-bold ">{nameInfo}</p>
           {registerToday ? (
