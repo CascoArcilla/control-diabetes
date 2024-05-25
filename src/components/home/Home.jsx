@@ -6,7 +6,7 @@ import DetailToday from "./DetailToday";
 
 export default function Home() {
   const { user } = useAuth();
-  const { registerToday, todayAlimentos } = useHome();
+  const { registerToday, todayAlimentos, macronutrientesToday } = useHome();
   const { registersGlucosaToday, lastReisterGlucosa } = registerToday;
 
   const { caloriesToday } = todayAlimentos;
@@ -20,6 +20,7 @@ export default function Home() {
       <DetailToday
         registersGlucosaToday={lastReisterGlucosa}
         caloriesToday={caloriesToday}
+        macroToday={macronutrientesToday}
       />
       <HistorialGlucosa todayGlucosa={registersGlucosaToday} />
     </section>

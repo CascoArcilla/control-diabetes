@@ -3,7 +3,11 @@ import BoxDetail from "./BoxDetail";
 import Macronutrients from "./Macronutrients";
 import RegistersToday from "./RegistersToday";
 
-export default function DetailToday({ registersGlucosaToday, caloriesToday }) {
+export default function DetailToday({
+  registersGlucosaToday,
+  caloriesToday,
+  macroToday,
+}) {
   const { isRegisterGlucosa, confirmRegisterGlucosa, user } = useAuth();
   let lasteRegisterGlucosa = 0;
   if (registersGlucosaToday) {
@@ -42,7 +46,7 @@ export default function DetailToday({ registersGlucosaToday, caloriesToday }) {
           showButton={false}
         />
 
-        <Macronutrients />
+        <Macronutrients macroToday={macroToday} />
       </section>
     </section>
   );
