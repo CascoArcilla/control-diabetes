@@ -1,7 +1,13 @@
 import { useAuth } from "../../auth/AuthPorvider";
 import BoxDetail from "./BoxDetail";
+import Macronutrients from "./Macronutrients";
+import RegistersToday from "./RegistersToday";
 
-export default function DetailToday({ registersGlucosaToday, caloriesToday }) {
+export default function DetailToday({
+  registersGlucosaToday,
+  caloriesToday,
+  macroToday,
+}) {
   const { isRegisterGlucosa, confirmRegisterGlucosa, user } = useAuth();
   let lasteRegisterGlucosa = 0;
   if (registersGlucosaToday) {
@@ -23,37 +29,24 @@ export default function DetailToday({ registersGlucosaToday, caloriesToday }) {
   return (
     <section className="container-fluid">
       <header className="container-fluid p-0 m-0 ">
-        <h3 className="text-center mt-3 fw-bold ">Información de hoy</h3>
+        <h3 className="text-center my-3 fw-bold ">Información de hoy</h3>
       </header>
       <section className="container-fluid d-flex flex-column justify-content-around gap-3 ">
-        <BoxDetail
-          nameInfo="Glucosa Medida"
-          to="glucosa"
-          registerToday={isRegisterGlucosa}
-          dataInfo={lasteRegisterGlucosa}
-          setConfirm={setConfirmGlucosa}
-          showButton={true}
+        <RegistersToday
+          caloriesToday={caloriesToday}
+          isRegisterGlucosa={isRegisterGlucosa}
+          lasteRegisterGlucosa={lasteRegisterGlucosa}
+          setConfirmGlucosa={setConfirmGlucosa}
         />
-        <BoxDetail
-          nameInfo="Calorias Ingestas"
-          to="alimento"
-          registerToday={caloriesToday != 0}
-          dataInfo={caloriesToday}
-          setConfirm={() => {
-            console.log("Se registro caloria");
-          }}
-          showButton={true}
-        />
+
         <BoxDetail
           nameInfo="Calorias Estimadas"
-          to=""
           registerToday={true}
           dataInfo={maxCalories}
-          setConfirm={() => {
-            console.log("Se registro caloria");
-          }}
           showButton={false}
         />
+
+        <Macronutrients macroToday={macroToday} />
       </section>
     </section>
   );

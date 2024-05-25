@@ -14,6 +14,11 @@ export function useHome() {
     todayRegisterAlimento: [],
     caloriesToday: 0,
   });
+  const [macronutrientesToday, setMacronutrientesToday] = useState({
+    carbohidratos: 0,
+    proteinas: 0,
+    grasa: 0,
+  });
 
   useEffect(() => {
     getGlucosaRegisters();
@@ -34,13 +39,25 @@ export function useHome() {
       }
     });
 
-    // Ontener las calorias totales del dia
+    // Ontener las calorias y macronutrientes totales del dia
     let caloriesToday = 0;
+    let carbo = 0;
+    let prote = 0;
+    let grasas = 0;
+
     todayRegisterAlimento.forEach((alimento) => {
       caloriesToday += parseInt(alimento.calorias, 10);
+      carbo += parseInt(alimento.carbohidrato, 10);
+      prote += parseInt(alimento.proteinas, 10);
+      grasas += parseInt(alimento.grasas, 10);
     });
 
-    return setTodayAlimentos({ todayRegisterAlimento, caloriesToday });
+    setTodayAlimentos({ todayRegisterAlimento, caloriesToday });
+    setMacronutrientesToday({
+      carbohidratos: carbo,
+      proteinas: prote,
+      grasa: grasas,
+    });
   };
 
   const getGlucosaRegisters = async () => {
@@ -67,5 +84,5 @@ export function useHome() {
     return setRegisterToday({ registersGlucosaToday, lastReisterGlucosa });
   };
 
-  return { registerToday, todayAlimentos };
+  return { registerToday, todayAlimentos, macronutrientesToday };
 }

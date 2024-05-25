@@ -2,6 +2,7 @@ import { Form, Navigate, useActionData } from "react-router-dom";
 import { useAuth } from "../../auth/AuthPorvider";
 import { useEffect } from "react";
 import { calcularCaloriasDiabetesTipo1 } from "../../functions/calculos/calcularCalorias.js";
+import { getMacroNutrientes } from "../../functions/calculos/calcularMacro.js";
 
 export default function Login() {
   const action = useActionData();
@@ -20,11 +21,17 @@ export default function Login() {
             newUser.actividad_fisica
           );
 
-          let addCalories = {
+          let macroNuntri = getMacroNutrientes(
+            calories,
+            newUser.actividad_fisica
+          );
+
+          let addExtraInfo = {
             calorias_esperadas: calories,
+            macronutrientes: macroNuntri,
           };
 
-          newUser = { ...newUser, ...addCalories };
+          newUser = { ...newUser, ...addExtraInfo };
 
           changeUser(newUser);
           changeAuthenticat();
