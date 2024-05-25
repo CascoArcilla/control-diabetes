@@ -66,14 +66,17 @@ export default function FormAlimento() {
         />
       </div>
       <div className="container-fluid p-0 ">
-        <label htmlFor="input-azucar" className="form-label fw-bold m-0 p-0 ">
-          Azucares (g)
+        <label
+          htmlFor="input-proteinas"
+          className="form-label fw-bold m-0 p-0 "
+        >
+          Proteinas (g)
         </label>
         <input
           type="number"
           className="form-control"
-          id="input-azucar"
-          name="azucar"
+          id="input-proteinas"
+          name="proteinas"
           required
         />
       </div>
