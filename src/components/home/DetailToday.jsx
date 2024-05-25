@@ -11,16 +11,11 @@ export default function DetailToday({ registersGlucosaToday, caloriesToday }) {
   }
 
   let maxCalories = "";
-  let macros = {};
 
   if (user.calorias_esperadas) {
     maxCalories = user.calorias_esperadas;
   } else {
     maxCalories = "Indefinido";
-  }
-
-  if (user.macronutrientes) {
-    macros = user.macronutrientes;
   }
 
   const setConfirmGlucosa = () => {
@@ -47,7 +42,7 @@ export default function DetailToday({ registersGlucosaToday, caloriesToday }) {
           showButton={false}
         />
 
-        <Macronutrients infoMacro={macros} />
+        <Macronutrients />
       </section>
     </section>
   );

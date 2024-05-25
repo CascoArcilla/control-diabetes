@@ -2,6 +2,7 @@ import { Form, Navigate, useActionData } from "react-router-dom";
 import { useAuth } from "../../auth/AuthPorvider";
 import { useEffect } from "react";
 import { calcularCaloriasDiabetesTipo1 } from "../../functions/calculos/calcularCalorias.js";
+import { getMacroNutrientes } from "../../functions/calculos/calcularMacro.js";
 
 export default function Login() {
   const action = useActionData();
@@ -20,9 +21,10 @@ export default function Login() {
             newUser.actividad_fisica
           );
 
-          // Hacer funcion para poder obtner las macronutrientes esperados
-
-          let macroNuntri = { carbo: 175, prote: 125, grasas: 120 };
+          let macroNuntri = getMacroNutrientes(
+            calories,
+            newUser.actividad_fisica
+          );
 
           let addExtraInfo = {
             calorias_esperadas: calories,

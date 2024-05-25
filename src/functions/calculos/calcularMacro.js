@@ -21,9 +21,9 @@ export function getGrasas (calorias_diarias, actividad) {
 }
 
 export function getMacroNutrientes (calorias_diarias, actividad) {
-    const proteinas = getProteinas(calorias_diarias, actividad)
-    const carbohidratos = getCarbos(calorias_diarias, actividad)
-    const grasas = getGrasas(calorias_diarias, actividad)
+    const proteinas = Math.floor(getProteinas(calorias_diarias, actividad))
+    const carbohidratos = Math.floor(getCarbos(calorias_diarias, actividad))
+    const grasas = Math.floor(getGrasas(calorias_diarias, actividad))
 
     const macroNuntri = { carbo: carbohidratos, prote: proteinas, grasas: grasas }
 
